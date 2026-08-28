@@ -5,7 +5,7 @@ import yfinance as yf
 
 
 def get_market_data():
-    """1. 환율, 금, 주가지수, 가상자산, 원자재, 국채금리 (Yahoo Finance)"""
+    """1. 환율, 금(국제/국내), 주가지수, 가상자산, 원자재, 국채금리"""
     tickers = {
         # 통화 & 금리
         "달러/원 환율": "KRW=X",
@@ -22,6 +22,10 @@ def get_market_data():
     }
 
     lines = []
+    usd_krw_rate = 1380.0 # fallback 기본값
+    gold_usd_oz = None
+    gold_change = 0.0
+
     for name, symbol in tickers.items():
         try:
             ticker = yf.Ticker(symbol)
@@ -30,7 +34,13 @@ def get_market_data():
             prev_close = info.previous_close
             change = ((price - prev_close) / prev_close) * 100
             sign = "+" if change > 0 else ""
-            
+
+            if symbol == "KRW=X":
+                usd_krw_rate = price
+            elif symbol == "GC=F":
+                gold_usd_oz = price
+                gold_change = change
+
             if symbol == "^TNX":
                 lines.append(f"• *{name}*: {price:.2f}% ({sign}{change:.2f}%)")
             else:
@@ -38,11 +48,21 @@ def get_market_data():
         except Exception:
             lines.append(f"• *{name}*: 데이터 수집 실패")
 
+    # 2. 국내 금 시세 추가 (1온스 = 31.1034768g, 1돈 = 3.75g)
+    if gold_usd_oz and usd_krw_rate:
+        try:
+            gold_per_gram_krw = (gold_usd_oz * usd_krw_rate) / 31.1034768
+            gold_per_don_krw = gold_per_gram_krw * 3.75
+            sign = "+" if gold_change > 0 else ""
+            lines.append(f"• *국내 순금 (1돈/3.75g)*: {gold_per_don_krw:,.0f}원 ({sign}{gold_change:.2f}%)")
+        except Exception:
+            pass
+
     return "\n".join(lines)
 
 
 def get_fear_and_greed():
-    """2. 공포 & 탐욕 지수 (CNN Fear & Greed API)"""
+    """3. 공포 & 탐욕 지수 (CNN Fear & Greed API)"""
     url = "https://production.dataviz.cnn.io/index/fearandgreed/graphdata"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
@@ -52,7 +72,7 @@ def get_fear_and_greed():
         data = res.json()
         score = int(round(data["fear_and_greed"]["score"]))
         rating = data["fear_and_greed"]["rating"].capitalize()
-        
+
         rating_ko = {
             "Extreme fear": "극단적 공포 🥶",
             "Fear": "공포 😨",
@@ -65,39 +85,31 @@ def get_fear_and_greed():
     except Exception:
         return "• *CNN 공포·탐욕 지수*: 수집 실패"
 
+
 def get_gas_price():
-    """3. 전국 평균 휘발유 가격 (Yahoo Finance 가솔린 선물 + 국내 유류세/유통마진 산출 모델)"""
+    """4. 전국 평균 휘발유 가격 (Yahoo Finance RBOB 가솔린 선물 연동 산출)"""
     try:
-        # 미국 RBOB 가솔린 선물(갤런당 달러) 및 원/달러 환율
         gas_ticker = yf.Ticker("RB=F").fast_info
         usd_ticker = yf.Ticker("KRW=X").fast_info
 
-        gas_price_gal_usd = gas_ticker.last_price  # 1갤런당 달러
-        usd_krw = usd_ticker.last_price            # 달러/원 환율
+        gas_price_gal_usd = gas_ticker.last_price
+        usd_krw = usd_ticker.last_price
 
         prev_gas = gas_ticker.previous_close
         change_pct = ((gas_price_gal_usd - prev_gas) / prev_gas) * 100
         sign = "+" if change_pct > 0 else ""
 
-        # 1갤런 = 3.78541리터 변환
-        # 국제 정제 휘발유 원가(원/L) + 국내 고정 유류세/관세/정유사/주유소 마진(약 900~950원/L)
+        # 1갤런 = 3.78541L + 고정 유류세/유통비용(약 920원)
         raw_price_liter_krw = (gas_price_gal_usd * usd_krw) / 3.78541
         est_korea_pump_price = raw_price_liter_krw + 920.0
 
         return f"• *전국 평균 휘발유 (추정)*: {est_korea_pump_price:,.1f}원/L (국제유가 {sign}{change_pct:.2f}%)"
     except Exception:
-        # 만약 계산 실패 시 구글 파이낸스 직접 검색 fallback
-        try:
-            r = requests.get("https://www.google.com/finance/quote/RB00:NYMEX", headers={"User-Agent": "Mozilla/5.0"}, timeout=5)
-            soup = BeautifulSoup(r.text, "html.parser")
-            val = soup.select_one(".YMlKec.fxKbKc").text
-            return f"• *국제 휘발유 시세*: ${val}/gal"
-        except Exception:
-            return "• *전국 평균 휘발유*: 수집 지연"
+        return "• *전국 평균 휘발유*: 수집 실패"
+
 
 def get_weather():
-    """4. 오늘의 서울 날씨 (Open-Meteo 무료 API: 섭씨 기준)"""
-    # 서울 좌표 (위도 37.5665, 경도 126.9780)
+    """5. 오늘의 서울 날씨 (Open-Meteo 무료 API)"""
     url = "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code&timezone=Asia%2FTokyo"
     try:
         res = requests.get(url, timeout=5)
@@ -107,7 +119,6 @@ def get_weather():
         humidity = data.get("relative_humidity_2m", 0)
         code = data.get("weather_code", 0)
 
-        # WMO 날씨 코드 한글 매핑
         weather_map = {
             0: "맑음 ☀️", 1: "대체로 맑음 🌤️", 2: "구름 조금 ⛅", 3: "흐림 ☁️",
             45: "안개 🌫️", 48: "안개 🌫️",
@@ -125,7 +136,7 @@ def get_weather():
 
 
 def get_top_news(limit=3):
-    """5. 주요 경제 뉴스 (구글 뉴스 경제 RSS)"""
+    """6. 주요 경제 뉴스 (구글 뉴스 경제 RSS)"""
     rss_url = "https://news.google.com/rss/headlines/section/topic/BUSINESS?hl=ko&gl=KR&ceid=KR:ko"
     feed = feedparser.parse(rss_url)
 
@@ -139,7 +150,7 @@ def get_top_news(limit=3):
 
 
 def send_to_slack(message_text):
-    """6. Slack Webhook 전송"""
+    """7. Slack Webhook 전송"""
     webhook_url = os.environ.get("SLACK_WEBHOOK_URL")
     if not webhook_url:
         print("SLACK_WEBHOOK_URL 환경변수가 설정되지 않았습니다.")
