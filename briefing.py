@@ -65,65 +65,35 @@ def get_fear_and_greed():
     except Exception:
         return "• *CNN 공포·탐욕 지수*: 수집 실패"
 
-
 def get_gas_price():
-    """3. 전국 평균 휘발유 가격 (오피넷/네이버 다중 경로 수집)"""
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    }
-
-    # 1. 오피넷 메인 데이터 API (공개 엔드포인트)
+    """3. 전국 평균 휘발유 가격 (Yahoo Finance 가솔린 선물 + 국내 유류세/유통마진 산출 모델)"""
     try:
-        opinet_url = "https://www.opinet.co.kr/user/d anawa/d anawaSelect.do"  # 오피넷 시세 데이터
-        res = requests.post(
-            "https://www.opinet.co.kr/user/main/mainOilPrice.do",
-            headers=headers,
-            timeout=8,
-            verify=False
-        )
-        if res.status_code == 200:
-            import json
-            data = res.json()
-            # 보통휘발유(B027) 가격 추출
-            for oil in data.get("oilPriceList", []):
-                if oil.get("PRODCD") == "B027" or "휘발유" in oil.get("PROD_NM", ""):
-                    price = f"{float(oil.get('PRICE', 0)):,.2f}"
-                    diff = oil.get("DIFF", "0")
-                    sign = "+" if float(diff) > 0 else ""
-                    return f"• *전국 평균 휘발유*: {price}원/L ({sign}{diff}원)"
-    except Exception:
-        pass
+        # 미국 RBOB 가솔린 선물(갤런당 달러) 및 원/달러 환율
+        gas_ticker = yf.Ticker("RB=F").fast_info
+        usd_ticker = yf.Ticker("KRW=X").fast_info
 
-    # 2. 다음(Daum) 금융 유가 API 백업 (해외 IP 차단 없음)
-    try:
-        daum_url = "https://finance.daum.net/api/market_index/oil/OIL_G001"
-        daum_headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-            "Referer": "https://finance.daum.net/"
-        }
-        res = requests.get(daum_url, headers=daum_headers, timeout=8)
-        if res.status_code == 200:
-            data = res.json()
-            price = data.get("tradePrice")
-            change = data.get("changePrice")
-            sign = "+" if data.get("change") == "RISE" else ("-" if data.get("change") == "FALL" else "")
-            if price:
-                return f"• *전국 평균 휘발유*: {price:,.2f}원/L ({sign}{change}원)"
-    except Exception:
-        pass
+        gas_price_gal_usd = gas_ticker.last_price  # 1갤런당 달러
+        usd_krw = usd_ticker.last_price            # 달러/원 환율
 
-    # 3. 네이버 금융 단독 모바일 텍스트 파싱 백업
-    try:
-        n_url = "https://finance.naver.com/marketindex/oilDetail.naver?marketindexCd=OIL_G001"
-        res = requests.get(n_url, headers=headers, timeout=8)
-        soup = BeautifulSoup(res.text, "html.parser")
-        val = soup.select_one("em.no_today span.blind") or soup.select_one("div.head_info em")
-        if val:
-            return f"• *전국 평균 휘발유*: {val.text.strip()}원/L"
-    except Exception:
-        pass
+        prev_gas = gas_ticker.previous_close
+        change_pct = ((gas_price_gal_usd - prev_gas) / prev_gas) * 100
+        sign = "+" if change_pct > 0 else ""
 
-    return "• *전국 평균 휘발유*: 데이터 갱신 대기 중"
+        # 1갤런 = 3.78541리터 변환
+        # 국제 정제 휘발유 원가(원/L) + 국내 고정 유류세/관세/정유사/주유소 마진(약 900~950원/L)
+        raw_price_liter_krw = (gas_price_gal_usd * usd_krw) / 3.78541
+        est_korea_pump_price = raw_price_liter_krw + 920.0
+
+        return f"• *전국 평균 휘발유 (추정)*: {est_korea_pump_price:,.1f}원/L (국제유가 {sign}{change_pct:.2f}%)"
+    except Exception:
+        # 만약 계산 실패 시 구글 파이낸스 직접 검색 fallback
+        try:
+            r = requests.get("https://www.google.com/finance/quote/RB00:NYMEX", headers={"User-Agent": "Mozilla/5.0"}, timeout=5)
+            soup = BeautifulSoup(r.text, "html.parser")
+            val = soup.select_one(".YMlKec.fxKbKc").text
+            return f"• *국제 휘발유 시세*: ${val}/gal"
+        except Exception:
+            return "• *전국 평균 휘발유*: 수집 지연"
 
 def get_weather():
     """4. 오늘의 서울 날씨 (Open-Meteo 무료 API: 섭씨 기준)"""
