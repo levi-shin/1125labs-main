@@ -85,28 +85,44 @@ def get_fear_and_greed():
     except Exception:
         return "• *CNN 공포·탐욕 지수*: 수집 실패"
 
-
 def get_gas_price():
-    """4. 전국 평균 휘발유 가격 (Yahoo Finance RBOB 가솔린 선물 연동 산출)"""
+    """4. 전국 평균 휘발유 실제 가격 (한국석유공사 오피넷 실시간 데이터)"""
+    url = "https://www.opinet.co.kr/user/main/mainOilPrice.do"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://www.opinet.co.kr/",
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "X-Requested-With": "XMLHttpRequest"
+    }
+
     try:
-        gas_ticker = yf.Ticker("RB=F").fast_info
-        usd_ticker = yf.Ticker("KRW=X").fast_info
-
-        gas_price_gal_usd = gas_ticker.last_price
-        usd_krw = usd_ticker.last_price
-
-        prev_gas = gas_ticker.previous_close
-        change_pct = ((gas_price_gal_usd - prev_gas) / prev_gas) * 100
-        sign = "+" if change_pct > 0 else ""
-
-        # 1갤런 = 3.78541L + 고정 유류세/유통비용(약 920원)
-        raw_price_liter_krw = (gas_price_gal_usd * usd_krw) / 3.78541
-        est_korea_pump_price = raw_price_liter_krw + 920.0
-
-        return f"• *전국 평균 휘발유 (추정)*: {est_korea_pump_price:,.1f}원/L (국제유가 {sign}{change_pct:.2f}%)"
+        # 오피넷 실시간 전국 평균 유가 비동기 요청
+        res = requests.post(url, headers=headers, timeout=8)
+        if res.status_code == 200:
+            data = res.json()
+            for oil in data.get("oilPriceList", []):
+                # B027: 보통휘발유 코드
+                if oil.get("PRODCD") == "B027" or "휘발유" in oil.get("PROD_NM", ""):
+                    price = float(oil.get("PRICE", 0))
+                    diff = float(oil.get("DIFF", 0))
+                    sign = "+" if diff > 0 else ("-" if diff < 0 else "")
+                    diff_str = f"{abs(diff):.2f}"
+                    return f"• *전국 평균 휘발유*: {price:,.2f}원/L (전일비 {sign}{diff_str}원)"
     except Exception:
-        return "• *전국 평균 휘발유*: 수집 실패"
+        pass
 
+    # 백업: 네이버 모바일 금융 크롤링 (User-Agent 단독)
+    try:
+        n_url = "https://finance.naver.com/marketindex/oilDetail.naver?marketindexCd=OIL_G001"
+        n_res = requests.get(n_url, headers={"User-Agent": "Mozilla/5.0"}, timeout=5)
+        soup = BeautifulSoup(n_res.text, "html.parser")
+        val = soup.select_one("div.head_info em.no_today") or soup.select_one(".no_today")
+        if val:
+            return f"• *전국 평균 휘발유*: {val.text.strip()}원/L"
+    except Exception:
+        pass
+
+    return "• *전국 평균 휘발유*: 데이터 수집 지연"
 
 def get_weather():
     """5. 오늘의 서울 날씨 (Open-Meteo 무료 API)"""
