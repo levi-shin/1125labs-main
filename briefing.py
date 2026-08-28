@@ -67,48 +67,51 @@ def get_fear_and_greed():
 
 
 def get_gas_price():
-    """3. 전국 평균 휘발유 가격 (오피넷/네이버 모바일 페이지 크롤링)"""
-    url = "https://m.stock.naver.com/marketindex/oil"
+    """3. 전국 평균 휘발유 가격 (네이버 증권 시장지표 API 직접 호출)"""
+    # 네이버페이 증권 국내 유가(오피넷 연동) 공식 API 엔드포인트
+    url = "https://api.stock.naver.com/marketindex/domestic/oil"
     headers = {
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Referer": "https://m.stock.naver.com/"
     }
     
-    # 1차 시도: 네이버페이 증권 웹 페이지 파싱
     try:
         res = requests.get(url, headers=headers, timeout=5)
-        soup = BeautifulSoup(res.text, "html.parser")
+        if res.status_code == 200:
+            data = res.json()
+            # API 응답 리스트 순회 (휘발유 항목 탐색)
+            items = data if isinstance(data, list) else data.get("oilPrices", [])
+            for item in items:
+                name = item.get("stockName", "") or item.get("name", "")
+                if "휘발유" in name:
+                    price = item.get("closePrice") or item.get("price") or item.get("tradePrice")
+                    change = item.get("compareToPreviousClosePrice") or item.get("changePrice")
+                    sign = ""
+                    
+                    # 변동 부호 처리
+                    change_type = item.get("compareToPreviousPrice", {}).get("name", "")
+                    if "RISING" in change_type or "UP" in change_type:
+                        sign = "+"
+                    elif "FALLING" in change_type or "DOWN" in change_type:
+                        sign = "-"
+                        
+                    if price:
+                        change_text = f" ({sign}{change}원)" if change else ""
+                        return f"• *전국 평균 휘발유*: {price}원/L{change_text}"
         
-        # 휘발유 관련 텍스트 검색
-        for row in soup.find_all(["li", "tr", "div"]):
-            text = row.get_text()
-            if "휘발유" in text and "원" in text:
-                # 숫자 추출
-                import re
-                prices = re.findall(r'[\d,]+\.?\d*', text)
-                for p in prices:
-                    clean_p = p.replace(',', '')
-                    try:
-                        val = float(clean_p)
-                        if 1000 <= val <= 3000:  # 국내 유가 정상 범위 필터링
-                            return f"• *전국 평균 휘발유*: {p}원/L"
-                    except ValueError:
-                        continue
-    except Exception:
-        pass
+        # 보조 API: 네이버 통합 시장지표 홈 API
+        sub_url = "https://m.stock.naver.com/front-api/marketIndex/home"
+        sub_res = requests.get(sub_url, headers=headers, timeout=5)
+        if sub_res.status_code == 200:
+            sub_data = sub_res.json()
+            for group in sub_data.get("result", {}).get("oilList", []):
+                if "휘발유" in group.get("stockName", ""):
+                    p = group.get("closePrice")
+                    return f"• *전국 평균 휘발유*: {p}원/L"
 
-    # 2차 시도: 다음 금융(Daum) 원자재 대체
-    try:
-        daum_url = "https://finance.daum.net/api/market_index/oil"
-        d_res = requests.get(daum_url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://finance.daum.net/"}, timeout=5)
-        d_data = d_res.json()
-        for item in d_data.get("data", []):
-            if "휘발유" in item.get("name", ""):
-                return f"• *전국 평균 휘발유*: {item.get('tradePrice', '확인 불가')}원/L"
-    except Exception:
-        pass
-
-    return "• *전국 평균 휘발유*: 1,600원대 (일시적 수집 지연)"
-
+        return "• *전국 평균 휘발유*: 데이터 확인 실패"
+    except Exception as e:
+        return f"• *전국 평균 휘발유*: 수집 오류 ({str(e)})"
 
 def get_weather():
     """4. 오늘의 서울 날씨 (Open-Meteo 무료 API: 섭씨 기준)"""
