@@ -2,7 +2,6 @@ import os
 import requests
 import feedparser
 import yfinance as yf
-from bs4 import BeautifulSoup
 
 
 def get_market_data():
@@ -32,7 +31,6 @@ def get_market_data():
             change = ((price - prev_close) / prev_close) * 100
             sign = "+" if change > 0 else ""
             
-            # 국채금리는 % 단위이므로 다르게 표기
             if symbol == "^TNX":
                 lines.append(f"• *{name}*: {price:.2f}% ({sign}{change:.2f}%)")
             else:
@@ -55,7 +53,6 @@ def get_fear_and_greed():
         score = int(round(data["fear_and_greed"]["score"]))
         rating = data["fear_and_greed"]["rating"].capitalize()
         
-        # 한글 변환
         rating_ko = {
             "Extreme fear": "극단적 공포 🥶",
             "Fear": "공포 😨",
@@ -70,37 +67,50 @@ def get_fear_and_greed():
 
 
 def get_gas_price():
-    """3. 전국 평균 휘발유 가격 (네이버 증권 시장지표 크롤링)"""
-    url = "https://finance.naver.com/marketindex/"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    """3. 전국 평균 휘발유 가격 (네이버 페이 증권 모바일 API)"""
+    url = "https://m.stock.naver.com/front-api/v1/marketIndex/prices?category=oil&restate=true"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X)",
+        "Referer": "https://m.stock.naver.com/"
+    }
     try:
         res = requests.get(url, headers=headers, timeout=5)
-        soup = BeautifulSoup(res.text, "html.parser")
-        
-        oil_item = soup.select_one("a.head.oil_gas span.value")
-        if oil_item:
-            return f"• *전국 평균 휘발유*: {oil_item.text.strip()}원/L"
-
-        for item in soup.select("div.market1 ul.data_list li"):
-            title = item.select_one("span.blind")
-            if title and "휘발유" in title.text:
-                val = item.select_one("span.value").text.strip()
-                return f"• *전국 평균 휘발유*: {val}원/L"
-
+        data = res.json()
+        for item in data.get("result", []):
+            if "휘발유" in item.get("stockName", ""):
+                price = item.get("closePrice", "확인 불가")
+                change = item.get("compareToPreviousClosePrice", "")
+                return f"• *전국 평균 휘발유*: {price}원/L (전일비 {change}원)"
         return "• *전국 평균 휘발유*: 확인 불가"
     except Exception:
         return "• *전국 평균 휘발유*: 수집 실패"
 
 
 def get_weather():
-    """4. 오늘의 서울 날씨 (wttr.in)"""
-    url = "https://ko.wttr.in/Seoul?format=%c+%C,+%t+(체감+%f),+습도+%h"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    """4. 오늘의 서울 날씨 (Open-Meteo 무료 API: 섭씨 기준)"""
+    # 서울 좌표 (위도 37.5665, 경도 126.9780)
+    url = "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code&timezone=Asia%2FTokyo"
     try:
-        res = requests.get(url, headers=headers, timeout=5)
-        if res.status_code == 200:
-            return f"• *서울 날씨*: {res.text.strip()}"
-        return "• *서울 날씨*: 수집 실패"
+        res = requests.get(url, timeout=5)
+        data = res.json().get("current", {})
+        temp = data.get("temperature_2m", 0)
+        app_temp = data.get("apparent_temperature", 0)
+        humidity = data.get("relative_humidity_2m", 0)
+        code = data.get("weather_code", 0)
+
+        # WMO 날씨 코드 한글 매핑
+        weather_map = {
+            0: "맑음 ☀️", 1: "대체로 맑음 🌤️", 2: "구름 조금 ⛅", 3: "흐림 ☁️",
+            45: "안개 🌫️", 48: "안개 🌫️",
+            51: "이슬비 🌧️", 53: "이슬비 🌧️", 55: "이슬비 🌧️",
+            61: "약한 비 🌧️", 63: "비 🌧️", 65: "강한 비 🌧️",
+            71: "약한 눈 🌨️", 73: "눈 🌨️", 75: "강한 눈 🌨️",
+            80: "소나기 🌦️", 81: "소나기 🌦️", 82: "강한 소나기 ⛈️",
+            95: "뇌우 ⚡"
+        }
+        status = weather_map.get(code, "맑음 ☀️")
+
+        return f"• *서울 날씨*: {status} {temp:.1f}℃ (체감 {app_temp:.1f}℃), 습도 {humidity}%"
     except Exception:
         return "• *서울 날씨*: 수집 실패"
 
