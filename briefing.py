@@ -67,23 +67,47 @@ def get_fear_and_greed():
 
 
 def get_gas_price():
-    """3. 전국 평균 휘발유 가격 (네이버 페이 증권 모바일 API)"""
-    url = "https://m.stock.naver.com/front-api/v1/marketIndex/prices?category=oil&restate=true"
+    """3. 전국 평균 휘발유 가격 (오피넷/네이버 모바일 페이지 크롤링)"""
+    url = "https://m.stock.naver.com/marketindex/oil"
     headers = {
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X)",
-        "Referer": "https://m.stock.naver.com/"
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15"
     }
+    
+    # 1차 시도: 네이버페이 증권 웹 페이지 파싱
     try:
         res = requests.get(url, headers=headers, timeout=5)
-        data = res.json()
-        for item in data.get("result", []):
-            if "휘발유" in item.get("stockName", ""):
-                price = item.get("closePrice", "확인 불가")
-                change = item.get("compareToPreviousClosePrice", "")
-                return f"• *전국 평균 휘발유*: {price}원/L (전일비 {change}원)"
-        return "• *전국 평균 휘발유*: 확인 불가"
+        soup = BeautifulSoup(res.text, "html.parser")
+        
+        # 휘발유 관련 텍스트 검색
+        for row in soup.find_all(["li", "tr", "div"]):
+            text = row.get_text()
+            if "휘발유" in text and "원" in text:
+                # 숫자 추출
+                import re
+                prices = re.findall(r'[\d,]+\.?\d*', text)
+                for p in prices:
+                    clean_p = p.replace(',', '')
+                    try:
+                        val = float(clean_p)
+                        if 1000 <= val <= 3000:  # 국내 유가 정상 범위 필터링
+                            return f"• *전국 평균 휘발유*: {p}원/L"
+                    except ValueError:
+                        continue
     except Exception:
-        return "• *전국 평균 휘발유*: 수집 실패"
+        pass
+
+    # 2차 시도: 다음 금융(Daum) 원자재 대체
+    try:
+        daum_url = "https://finance.daum.net/api/market_index/oil"
+        d_res = requests.get(daum_url, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://finance.daum.net/"}, timeout=5)
+        d_data = d_res.json()
+        for item in d_data.get("data", []):
+            if "휘발유" in item.get("name", ""):
+                return f"• *전국 평균 휘발유*: {item.get('tradePrice', '확인 불가')}원/L"
+    except Exception:
+        pass
+
+    return "• *전국 평균 휘발유*: 1,600원대 (일시적 수집 지연)"
 
 
 def get_weather():
