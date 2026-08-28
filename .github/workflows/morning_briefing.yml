@@ -25,6 +25,6 @@ jobs:
 
       - name: 브리핑 스크립트 실행 및 Slack 전송
         env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: |
           python briefing.py
