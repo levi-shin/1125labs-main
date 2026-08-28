@@ -67,41 +67,63 @@ def get_fear_and_greed():
 
 
 def get_gas_price():
-    """3. 전국 평균 휘발유 가격 (네이버 금융 유가 일별시세 정적 HTML 파싱)"""
-    # 국내 휘발유(OIL_G001) 일별 시세 정적 테이블 URL
-    url = "https://finance.naver.com/marketindex/oilDailyQuote.naver?marketindexCd=OIL_G001"
+    """3. 전국 평균 휘발유 가격 (오피넷/네이버 다중 경로 수집)"""
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     }
 
+    # 1. 오피넷 메인 데이터 API (공개 엔드포인트)
     try:
-        res = requests.get(url, headers=headers, timeout=5)
-        # 네이버 금융 페이지 인코딩(CP949/EUC-KR) 처리
-        soup = BeautifulSoup(res.content, "html.parser", from_encoding="cp949")
-        
-        # 첫 번째 행(가장 최신일자 데이터) 추출
-        latest_row = soup.select_one("table.tbl_exchange tbody tr")
-        if latest_row:
-            nums = latest_row.select("td.num")
-            if len(nums) >= 2:
-                price = nums[0].text.strip()  # 휘발유 가격 (예: 1,675.20)
-                change = nums[1].text.strip() # 전일 대비 변동폭
-                
-                # 상승/하락 기호 판별
-                sign = ""
-                img = latest_row.select_one("td.num img")
-                if img:
-                    alt = img.get("alt", "")
-                    if "상승" in alt:
-                        sign = "+"
-                    elif "하락" in alt:
-                        sign = "-"
-                        
-                return f"• *전국 평균 휘발유*: {price}원/L ({sign}{change}원)"
-        
-        return "• *전국 평균 휘발유*: 확인 불가"
-    except Exception as e:
-        return f"• *전국 평균 휘발유*: 수집 오류"
+        opinet_url = "https://www.opinet.co.kr/user/d anawa/d anawaSelect.do"  # 오피넷 시세 데이터
+        res = requests.post(
+            "https://www.opinet.co.kr/user/main/mainOilPrice.do",
+            headers=headers,
+            timeout=8,
+            verify=False
+        )
+        if res.status_code == 200:
+            import json
+            data = res.json()
+            # 보통휘발유(B027) 가격 추출
+            for oil in data.get("oilPriceList", []):
+                if oil.get("PRODCD") == "B027" or "휘발유" in oil.get("PROD_NM", ""):
+                    price = f"{float(oil.get('PRICE', 0)):,.2f}"
+                    diff = oil.get("DIFF", "0")
+                    sign = "+" if float(diff) > 0 else ""
+                    return f"• *전국 평균 휘발유*: {price}원/L ({sign}{diff}원)"
+    except Exception:
+        pass
+
+    # 2. 다음(Daum) 금융 유가 API 백업 (해외 IP 차단 없음)
+    try:
+        daum_url = "https://finance.daum.net/api/market_index/oil/OIL_G001"
+        daum_headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+            "Referer": "https://finance.daum.net/"
+        }
+        res = requests.get(daum_url, headers=daum_headers, timeout=8)
+        if res.status_code == 200:
+            data = res.json()
+            price = data.get("tradePrice")
+            change = data.get("changePrice")
+            sign = "+" if data.get("change") == "RISE" else ("-" if data.get("change") == "FALL" else "")
+            if price:
+                return f"• *전국 평균 휘발유*: {price:,.2f}원/L ({sign}{change}원)"
+    except Exception:
+        pass
+
+    # 3. 네이버 금융 단독 모바일 텍스트 파싱 백업
+    try:
+        n_url = "https://finance.naver.com/marketindex/oilDetail.naver?marketindexCd=OIL_G001"
+        res = requests.get(n_url, headers=headers, timeout=8)
+        soup = BeautifulSoup(res.text, "html.parser")
+        val = soup.select_one("em.no_today span.blind") or soup.select_one("div.head_info em")
+        if val:
+            return f"• *전국 평균 휘발유*: {val.text.strip()}원/L"
+    except Exception:
+        pass
+
+    return "• *전국 평균 휘발유*: 데이터 갱신 대기 중"
 
 def get_weather():
     """4. 오늘의 서울 날씨 (Open-Meteo 무료 API: 섭씨 기준)"""
