@@ -129,20 +129,25 @@
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
         }
 
+        /* 배지가 모바일/태블릿/데스크탑 모두에서 우측 상단에 고정되도록 flex-wrap 제거 */
         .card-header {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            margin-bottom: 8px;
-            flex-wrap: wrap;
-            gap: 8px;
+            margin-bottom: 6px;
+            flex-wrap: nowrap;
+            gap: 12px;
         }
 
         .card-title {
             margin: 0;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 600;
             color: #f1f5f9;
+            flex: 1;
+            min-width: 0;
+            word-break: keep-all;
+            line-height: 1.4;
         }
 
         .card-subtitle {
@@ -156,6 +161,9 @@
             padding: 3px 9px;
             border-radius: 20px;
             font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0;
+            line-height: 1.3;
         }
 
         .badge.live {
@@ -241,14 +249,15 @@
             justify-content: space-between;
             align-items: flex-start;
             gap: 12px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .modal-title {
             margin: 0;
-            font-size: 1.45rem;
+            font-size: 1.35rem;
             color: #f8fafc;
             font-weight: 700;
+            line-height: 1.35;
         }
 
         .modal-close {
@@ -350,6 +359,19 @@
             text-align: center;
             color: #64748b;
             font-size: 0.88rem;
+        }
+
+        /* 모바일 패딩 최적화 */
+        @media (max-width: 480px) {
+            body {
+                padding: 24px 16px;
+            }
+            .card {
+                padding: 16px 18px;
+            }
+            .modal-window {
+                padding: 20px;
+            }
         }
     </style>
 </head>
@@ -459,7 +481,7 @@
                 desc: `디아블로를 플레이하면서 필요한 정보들을 정리하고 탐색하기 위한 프로젝트입니다.<br><br>
                 게임을 하며 직접 찾아보고 정리했던 정보들을 한곳에 모으고, 필요한 정보를 조금 더 편하고 직관적으로 찾아볼 수 있도록 만들고 있습니다.`,
                 url: 'https://diablo.1125labs.com',
-                linkText: 'diablo.1125labs.com 방문'
+                linkText: '디아블로 백서 방문'
             },
             {
                 id: 'booki',
@@ -568,12 +590,10 @@
             }
         }
 
-        // ESC 키로 모달 닫기
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
 
-        // 초기 렌더링
         renderProjects();
     </script>
 </body>
