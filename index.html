@@ -6,8 +6,7 @@
     
     <!-- 구글 애드센스 소유권 인증 메타 태그 -->
     <meta name="google-adsense-account" content="ca-pub-8514352833859910">
-    <!-- 여기에 구글 애드센스 스크립트 코드 삽입 -->
-
+    
     <title>1125 Labs</title>
     
     <style>
@@ -44,7 +43,7 @@
 
         /* Header */
         header {
-            margin-bottom: 48px;
+            margin-bottom: 40px;
         }
 
         h1 {
@@ -71,63 +70,98 @@
             color: var(--text-main);
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             letter-spacing: -0.01em;
+        }
+
+        /* Status Tabs */
+        .tab-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--text-main);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-color);
+            color: #0f172a;
+            border-color: var(--accent-color);
+            font-weight: 600;
         }
 
         /* Project Cards */
         .project-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 16px;
         }
 
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 24px;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
         }
 
-        a.card:hover {
+        .card:hover {
             border-color: var(--accent-color);
-            transform: translateY(-3px);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
         }
 
         .card-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             flex-wrap: wrap;
             gap: 8px;
         }
 
         .card-title {
             margin: 0;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 600;
             color: #f1f5f9;
         }
 
         .card-subtitle {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--accent-color);
-            margin-top: -6px;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .badge {
             font-size: 0.75rem;
-            padding: 4px 10px;
-            background: var(--tag-bg);
-            color: var(--tag-text);
+            padding: 3px 9px;
             border-radius: 20px;
             font-weight: 500;
+        }
+
+        .badge.live {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
         }
 
         .badge.dev {
@@ -136,27 +170,154 @@
             border: 1px solid rgba(245, 158, 11, 0.3);
         }
 
-        .card-desc {
-            margin: 0 0 12px 0;
+        .badge.dead {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .card-desc-preview {
+            margin: 0;
             color: var(--text-muted);
+            font-size: 0.92rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-hint {
+            font-size: 0.78rem;
+            color: #64748b;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-window {
+            background: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 16px;
+            max-width: 580px;
+            width: 100%;
+            padding: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            transform: scale(0.95);
+            transition: transform 0.25s ease;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-window {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .modal-title {
+            margin: 0;
+            font-size: 1.45rem;
+            color: #f8fafc;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+        }
+
+        .modal-close:hover {
+            color: var(--text-main);
+        }
+
+        .modal-subtitle {
+            font-size: 0.95rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            color: #cbd5e1;
             font-size: 0.98rem;
+            line-height: 1.75;
+            margin-bottom: 24px;
             word-break: keep-all;
         }
 
-        .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            color: var(--accent-color);
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-top: 4px;
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 18px;
         }
 
-        .status-msg {
-            color: #fbbf24;
-            font-size: 0.9rem;
-            margin: 8px 0 0 0;
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent-color);
+            color: #0f172a;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-link:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background: #334155;
+            color: #f1f5f9;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.92rem;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
         }
 
         /* Text Sections */
@@ -208,79 +369,18 @@
         <!-- Projects Section -->
         <section>
             <h2 class="section-title">Projects</h2>
-            <div class="project-list">
 
-                <!-- 01. Macro & Big Tech Insights Dashboard -->
-                <a href="http://1125labs-s3-bucket.s3-website.ap-northeast-2.amazonaws.com" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">01. 모닝 팩터 (Morning Factor)</h3>
-                        <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">운영 중</span>
-                    </div>
-                    <div class="card-subtitle">Collection & Big Tech Insights</div>
-                    <p class="card-desc">
-                        매일 아침 글로벌 거시경제(환율/유가/금/지수) 및 주요 빅테크 종목들의 시세 변동을 자동 수집하고, AI를 통해 항목별 구체적인 등락 원인을 심층 분석하여 기록하는 자동화 대시보드입니다.
-                    </p>
-                    <div class="card-link">🔗 대시보드 바로가기</div>
-                </a>
-                
-                <!-- 02. Diablo Whitepaper -->
-                <a href="https://diablo.1125labs.com" target="_blank" rel="noopener noreferrer" class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">02. 디아블로 백서</h3>
-                        <span class="badge" style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3);">운영 중</span>
-                    </div>
-                    <div class="card-subtitle">Diablo Whitepaper</div>
-                    <p class="card-desc">
-                        디아블로를 플레이하면서 필요한 정보들을 정리하고 탐색하기 위한 프로젝트입니다.<br>
-                        게임을 하며 직접 찾아보고 정리했던 정보들을 한곳에 모으고, 필요한 정보를 조금 더 편하게 찾아볼 수 있도록 만들고 있습니다.
-                    </p>
-                    <div class="card-link">🔗 diablo.1125labs.com</div>
-                </a>
+            <!-- Status Tabs -->
+            <div class="tab-group" id="tabGroup">
+                <button class="tab-btn active" onclick="filterProjects('all', this)">전체</button>
+                <button class="tab-btn" onclick="filterProjects('live', this)">운영 중</button>
+                <button class="tab-btn" onclick="filterProjects('dev', this)">개발 중</button>
+                <button class="tab-btn" onclick="filterProjects('dead', this)">중단됨</button>
+            </div>
 
-                <!-- 03. Booki -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">03. Booki — 독서 통장</h3>
-                        <span class="badge dev">개발 중</span>
-                    </div>
-                    <p class="card-desc">
-                        책을 읽고 기록하는 과정을 하나씩 쌓아가는 독서 기록 서비스입니다.<br>
-                        단순히 읽은 책의 목록을 저장하는 것이 아니라, 내가 어떤 책을 읽어왔고 무엇을 쌓아가고 있는지를 볼 수 있도록 만들고 있습니다.<br>
-                        책 한 권을 읽을 때마다 독서 통장에 기록이 쌓이는 것처럼 읽은 시간과 책에 대한 기록이 차곡차곡 남는 서비스를 만들고 있습니다.
-                    </p>
-                    <p class="status-msg">🚧 현재 개발 중입니다.</p>
-                </div>
-
-                <!-- 04. 돌무화과 레이어 -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">04. 돌무화과 레이어</h3>
-                        <span class="badge dev">가칭 · 개발 중</span>
-                    </div>
-                    <p class="card-desc">
-                        성경을 읽고 탐구하기 위한 앱입니다.<br>
-                        본문을 읽는 것에서 끝나지 않고, 성경 속 인물과 사건, 배경과 맥락 등을 여러 층(Layer)으로 살펴볼 수 있는 형태를 생각하고 있습니다.<br>
-                        아직 이름과 형태를 계속 만들어가는 중입니다.
-                    </p>
-                    <p class="status-msg">🚧 현재 개발 중입니다.</p>
-                </div>
-
-                <!-- FinTrack (중단된 프로젝트) -->
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">FinTrack 💀</h3>
-        <span class="badge" style="background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3);">중단됨</span>
-    </div>
-    <div class="card-subtitle">Personal Finance Tracking Project</div>
-    <p class="card-desc">
-        재무를 쉽게 관리해보려고 시작했던 프로젝트입니다.<br><br>
-        <strong>• 프로젝트가 멈춘 이유</strong><br>
-        재무 앱은 단순히 기록을 쉽게 만드는 것만으로는 부족했습니다. 사용자가 계속 기록하게 만들려면 자동화가 필요했고, 자동화를 구현하려면 금융 데이터 연동이라는 훨씬 큰 장벽이 따라왔습니다.<br><br>
-        결국 앱을 만드는 기술적 문제보다 <em>'사용자가 계속 사용할 이유를 만드는 문제'</em>가 더 어려웠다는 교훈을 남겼습니다.
-    </p>
-    <p class="status-msg" style="color: #94a3b8;">🪦 개발이 중단된 아카이브 프로젝트입니다.</p>
-</div>
-
+            <!-- Project Cards List -->
+            <div class="project-list" id="projectList">
+                <!-- JS로 프로젝트 데이터 렌더링 -->
             </div>
         </section>
 
@@ -320,5 +420,161 @@
         </footer>
     </div>
 
+    <!-- Modal Window -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+        <div class="modal-window">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" id="modalTitle">-</h3>
+                </div>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-subtitle" id="modalSubtitle">-</div>
+            <div class="modal-body" id="modalBody">-</div>
+            <div class="modal-actions" id="modalActions"></div>
+        </div>
+    </div>
+
+    <script>
+        const PROJECTS = [
+            {
+                id: 'morning-factor',
+                status: 'live',
+                badgeText: '운영 중',
+                title: '01. 모닝 팩터 (Morning Factor)',
+                subtitle: 'Collection & Big Tech Insights',
+                preview: '글로벌 거시경제(환율/유가/금/지수) 및 빅테크 시세 수집 & AI 등락 원인 심층 분석',
+                desc: `매일 아침 글로벌 거시경제(환율/유가/금/지수) 및 주요 빅테크 종목들의 시세 변동을 자동 수집하고, AI를 통해 항목별 구체적인 등락 원인을 심층 분석하여 기록하는 자동화 대시보드입니다.<br><br>
+                • <strong>핵심 기능</strong>: 매일 아침 Slack 모닝 브리핑 발송, 180일 히스토리 데이터 누적, 자산군별 인터랙티브 차트 및 AI 인과관계 리포트 뷰어 제공.`,
+                url: 'http://1125labs-s3-bucket.s3-website.ap-northeast-2.amazonaws.com',
+                linkText: '대시보드 바로가기'
+            },
+            {
+                id: 'diablo',
+                status: 'live',
+                badgeText: '운영 중',
+                title: '02. 디아블로 백서',
+                subtitle: 'Diablo Whitepaper',
+                preview: '디아블로 플레이에 필요한 방대한 정보들을 체계적으로 정리하고 탐색하는 위키',
+                desc: `디아블로를 플레이하면서 필요한 정보들을 정리하고 탐색하기 위한 프로젝트입니다.<br><br>
+                게임을 하며 직접 찾아보고 정리했던 정보들을 한곳에 모으고, 필요한 정보를 조금 더 편하고 직관적으로 찾아볼 수 있도록 만들고 있습니다.`,
+                url: 'https://diablo.1125labs.com',
+                linkText: 'diablo.1125labs.com 방문'
+            },
+            {
+                id: 'booki',
+                status: 'dev',
+                badgeText: '개발 중',
+                title: '03. Booki — 독서 통장',
+                subtitle: 'Book Reading Tracker',
+                preview: '책을 읽고 기록하는 과정을 통장처럼 차곡차곡 쌓아가는 독서 기록 서비스',
+                desc: `책을 읽고 기록하는 과정을 하나씩 쌓아가는 독서 기록 서비스입니다.<br><br>
+                단순히 읽은 책의 목록을 저장하는 것이 아니라, 내가 어떤 책을 읽어왔고 무엇을 쌓아가고 있는지를 볼 수 있도록 만들고 있습니다.<br><br>
+                책 한 권을 읽을 때마다 독서 통장에 기록이 쌓이는 것처럼 읽은 시간과 책에 대한 기록이 차곡차곡 남는 서비스를 구축 중입니다.<br><br>
+                🚧 <strong>현재 개발 진행 중입니다.</strong>`,
+                url: null
+            },
+            {
+                id: 'fig-layer',
+                status: 'dev',
+                badgeText: '가칭 · 개발 중',
+                title: '04. 돌무화과 레이어',
+                subtitle: 'Bible Context Exploration Layer',
+                preview: '성경 본문과 인물, 역사적 배경과 맥락을 여러 층위(Layer)로 살펴보는 탐구 도구',
+                desc: `성경을 읽고 탐구하기 위한 앱입니다.<br><br>
+                본문을 읽는 것에서 끝나지 않고, 성경 속 인물과 사건, 역사적 배경과 맥락 등을 여러 층(Layer)으로 살펴볼 수 있는 형태를 기획하고 있습니다.<br><br>
+                아직 이름과 형태를 계속 구체화하며 만들어가는 중입니다.<br><br>
+                🚧 <strong>현재 개발 진행 중입니다.</strong>`,
+                url: null
+            },
+            {
+                id: 'fintrack',
+                status: 'dead',
+                badgeText: '중단됨',
+                title: 'FinTrack 💀',
+                subtitle: 'Personal Finance Tracking Project',
+                preview: '재무를 쉽게 관리해보려 했으나, 지속적 사용 이유의 중요성을 깨닫고 아카이빙된 프로젝트',
+                desc: `개인 재무를 쉽게 관리해보려고 시작했던 프로젝트입니다.<br><br>
+                <strong>• 프로젝트가 멈춘 이유</strong><br>
+                재무 앱은 단순히 기록을 쉽게 만드는 것만으로는 부족했습니다. 사용자가 계속 기록하게 만들려면 자동화가 필요했고, 자동화를 구현하려면 금융 데이터 연동이라는 훨씬 큰 장벽이 따라왔습니다.<br><br>
+                결국 앱을 만드는 기술적 문제보다 <em>'사용자가 계속 사용할 이유를 만드는 문제'</em>가 더 어려웠다는 값진 교훈을 남기고 개발을 중단했습니다.<br><br>
+                🪦 <strong>개발이 중단된 아카이브 프로젝트입니다.</strong>`,
+                url: null
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        function renderProjects() {
+            const listEl = document.getElementById('projectList');
+            const filtered = currentFilter === 'all' 
+                ? PROJECTS 
+                : PROJECTS.filter(p => p.status === currentFilter);
+
+            listEl.innerHTML = filtered.map(p => `
+                <div class="card" onclick="openModal('${p.id}')">
+                    <div class="card-header">
+                        <h3 class="card-title">${p.title}</h3>
+                        <span class="badge ${p.status}">${p.badgeText}</span>
+                    </div>
+                    <div class="card-subtitle">${p.subtitle}</div>
+                    <p class="card-desc-preview">${p.preview}</p>
+                    <div class="card-hint">
+                        <span>상세 보기</span> ➔
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterProjects(status, btnEl) {
+            currentFilter = status;
+            document.querySelectorAll('#tabGroup .tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            renderProjects();
+        }
+
+        function openModal(id) {
+            const project = PROJECTS.find(p => p.id === id);
+            if (!project) return;
+
+            document.getElementById('modalTitle').innerText = project.title;
+            document.getElementById('modalSubtitle').innerText = project.subtitle;
+            document.getElementById('modalBody').innerHTML = project.desc;
+
+            const actionsEl = document.getElementById('modalActions');
+            if (project.url) {
+                actionsEl.innerHTML = `
+                    <button class="btn-secondary" onclick="closeModal()">닫기</button>
+                    <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="btn-link">🔗 ${project.linkText || '바로가기'}</a>
+                `;
+            } else {
+                actionsEl.innerHTML = `
+                    <button class="btn-secondary" onclick="closeModal()">닫기</button>
+                `;
+            }
+
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeModalOnOverlay(e) {
+            if (e.target.id === 'modalOverlay') {
+                closeModal();
+            }
+        }
+
+        // ESC 키로 모달 닫기
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // 초기 렌더링
+        renderProjects();
+    </script>
 </body>
 </html>
