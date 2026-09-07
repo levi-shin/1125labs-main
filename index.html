@@ -524,15 +524,15 @@
                 url: null
             }
         ];
-
+    
         let currentFilter = 'all';
-
+    
         function renderProjects() {
             const listEl = document.getElementById('projectList');
             const filtered = currentFilter === 'all' 
                 ? PROJECTS 
                 : PROJECTS.filter(p => p.status === currentFilter);
-
+    
             listEl.innerHTML = filtered.map(p => `
                 <div class="card" onclick="openModal('${p.id}')">
                     <div class="card-header">
@@ -547,53 +547,54 @@
                 </div>
             `).join('');
         }
-
+    
         function filterProjects(status, btnEl) {
             currentFilter = status;
             document.querySelectorAll('#tabGroup .tab-btn').forEach(btn => btn.classList.remove('active'));
             if (btnEl) btnEl.classList.add('active');
             renderProjects();
         }
-
+    
         function openModal(id) {
             const project = PROJECTS.find(p => p.id === id);
             if (!project) return;
-
+    
             document.getElementById('modalTitle').innerText = project.title;
             document.getElementById('modalSubtitle').innerText = project.subtitle;
             document.getElementById('modalBody').innerHTML = project.desc;
-
+    
             const actionsEl = document.getElementById('modalActions');
             if (project.url) {
+                // onclick="closeModal()" 추가됨
                 actionsEl.innerHTML = `
                     <button class="btn-secondary" onclick="closeModal()">닫기</button>
-                    <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="btn-link">🔗 ${project.linkText || '바로가기'}</a>
+                    <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="btn-link" onclick="closeModal()">🔗 ${project.linkText || '바로가기'}</a>
                 `;
             } else {
                 actionsEl.innerHTML = `
                     <button class="btn-secondary" onclick="closeModal()">닫기</button>
                 `;
             }
-
+    
             document.getElementById('modalOverlay').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-
+    
         function closeModal() {
             document.getElementById('modalOverlay').classList.remove('active');
             document.body.style.overflow = '';
         }
-
+    
         function closeModalOnOverlay(e) {
             if (e.target.id === 'modalOverlay') {
                 closeModal();
             }
         }
-
+    
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
         });
-
+    
         renderProjects();
     </script>
 </body>
