@@ -2,716 +2,710 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <script src="/js/prefs-boot.js"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V5Y0ZFS04L"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-V5Y0ZFS04L');
-    </script>
-    <meta name="google-adsense-account" content="ca-pub-8514352833859910">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>디아2 레저렉션 보조모니터 종결 백과사전 (룬어·유니크 족보, 빌드, 매찬 계산기)</title>
-    <meta name="description" content="디아블로 2 레저렉션(D2R) 보조 모니터용 종결 백과사전 — 룬어·유니크 족보, 종결 빌드, 육성 가이드, 매찬 계산기, 우버·횃불·파괴참 정보.">
-    <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="keywords" content="디아블로2, D2R, 레저렉션, 룬어, 유니크, 종결 빌드, 육성, 매찬, 우버, 횃불">
-    <!-- 외부 스타일시트 연결 -->
-    <meta property="og:title" content="디아2 레저렉션 보조모니터 종결 백과사전 | 1125 Labs">
-    <meta property="og:description" content="직접 파밍하고 정리한 실전 디아 2 백과 사전">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="1125 Labs — 직접 만들고 기록하는 개인 프로젝트 허브. 디아블로 백서, 모닝 팩터 등 운영 중·개발 중 프로젝트를 소개합니다.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://1125labs.com/">
+    <meta property="og:title" content="1125 Labs">
+    <meta property="og:description" content="필요한 것을 직접 만들어보고 기록하는 작은 실험실. 디아블로 백서 등 운영 중 서비스를 한곳에서 안내합니다.">
+    <meta property="og:url" content="https://1125labs.com/">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="1125 Labs">
-    <meta property="og:locale" content="ko_KR">
-    <meta property="og:locale:alternate" content="en_US">
-    <meta property="og:url" content="https://diablo.1125labs.com/">
-    <meta property="og:image" content="https://diablo.1125labs.com/images/og-thumb.jpg?v=2">
-    <meta property="og:image:secure_url" content="https://diablo.1125labs.com/images/og-thumb.jpg?v=2">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="디아2 레저렉션 보조모니터 종결 백과사전 | 1125 Labs">
-    <meta name="twitter:description" content="직접 파밍하고 정리한 실전 디아 2 백과 사전">
-    <meta name="twitter:image" content="https://diablo.1125labs.com/images/og-thumb.jpg?v=2">
-    <link rel="canonical" href="https://diablo.1125labs.com/">
-    <link rel="alternate" hreflang="ko" href="https://diablo.1125labs.com/">
-    <link rel="alternate" hreflang="en" href="https://diablo.1125labs.com/en/">
-    <link rel="alternate" hreflang="x-default" href="https://diablo.1125labs.com/">
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="https://diablo.1125labs.com/sitemap.xml">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "디아2 레저렉션 보조모니터 종결 백과사전",
-      "alternateName": "D2R Endgame Encyclopedia",
-      "url": "https://diablo.1125labs.com/",
-      "inLanguage": ["ko-KR", "en-US"],
-      "publisher": { "@type": "Organization", "name": "1125 Labs" }
-    }
-    </script>
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/favicon.svg">
-    <link rel="stylesheet" href="/css/style.css?v=20">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8514352833859910" crossorigin="anonymous"></script>
+    <!-- 구글 애드센스 소유권 인증 (허브에는 광고 슬롯을 두지 않음) -->
+    <meta name="google-adsense-account" content="ca-pub-8514352833859910">
+    <title>1125 Labs — 프로젝트 허브</title>
+    
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+            --tag-bg: #334155;
+            --tag-text: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.7;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+        }
+
+        /* Header */
+        header {
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            margin: 0 0 16px 0;
+            color: var(--accent-color);
+            letter-spacing: -0.02em;
+        }
+
+        .intro {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin: 0;
+            word-break: keep-all;
+        }
+
+        /* Section Commons */
+        section {
+            margin-bottom: 56px;
+        }
+
+        h2.section-title {
+            font-size: 1.4rem;
+            color: var(--text-main);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Status Tabs */
+        .tab-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--text-main);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-color);
+            color: #0f172a;
+            border-color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Project Cards */
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        /* 배지가 모바일/태블릿/데스크탑 모두에서 우측 상단에 고정되도록 flex-wrap 제거 */
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 6px;
+            flex-wrap: nowrap;
+            gap: 12px;
+        }
+
+        .card-title {
+            margin: 0;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            flex: 1;
+            min-width: 0;
+            word-break: keep-all;
+            line-height: 1.4;
+        }
+
+        .card-subtitle {
+            font-size: 0.88rem;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            flex-shrink: 0;
+            line-height: 1.3;
+        }
+
+        .badge.live {
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .badge.dev {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .badge.dead {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .card-desc-preview {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-hint {
+            font-size: 0.78rem;
+            color: #64748b;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-window {
+            background: #1e293b;
+            border: 1px solid #475569;
+            border-radius: 16px;
+            max-width: 580px;
+            width: 100%;
+            padding: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            transform: scale(0.95);
+            transition: transform 0.25s ease;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-overlay.active .modal-window {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .modal-title {
+            margin: 0;
+            font-size: 1.35rem;
+            color: #f8fafc;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+        }
+
+        .modal-close:hover {
+            color: var(--text-main);
+        }
+
+        .modal-subtitle {
+            font-size: 0.95rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            color: #cbd5e1;
+            font-size: 0.98rem;
+            line-height: 1.75;
+            margin-bottom: 24px;
+            word-break: keep-all;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 18px;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent-color);
+            color: #0f172a;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-link:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background: #334155;
+            color: #f1f5f9;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.92rem;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: #475569;
+        }
+
+        /* Text Sections */
+        .text-block {
+            color: var(--text-muted);
+            font-size: 1rem;
+            word-break: keep-all;
+        }
+
+        .text-block p {
+            margin: 0 0 14px 0;
+        }
+
+        .text-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .quote {
+            margin-top: 24px;
+            font-weight: 600;
+            color: var(--accent-color);
+            letter-spacing: 0.05em;
+        }
+
+        /* Featured live services (static HTML for crawlers / AdSense review) */
+        .featured-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .featured-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+        .featured-card h3 {
+            margin: 0 0 6px;
+            font-size: 1.1rem;
+            color: #f1f5f9;
+        }
+        .featured-card .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            background: rgba(56, 189, 248, 0.15);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .featured-card p {
+            margin: 0 0 10px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            word-break: keep-all;
+        }
+        .featured-card ul {
+            margin: 0 0 12px;
+            padding-left: 1.15rem;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+        .featured-card a.service-link {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.92rem;
+        }
+        .featured-card a.service-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: #64748b;
+            font-size: 0.88rem;
+        }
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* 모바일 패딩 최적화 */
+        @media (max-width: 480px) {
+            body {
+                padding: 24px 16px;
+            }
+            .card {
+                padding: 16px 18px;
+            }
+            .modal-window {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="page-shell">
-
-    <aside class="left-sidebar" aria-label="사이드바 네비게이션">
-        <div class="sidebar-logo" id="sidebarLogo" style="cursor: pointer;">
-            ⚔️ DIABLO II RESURRECTED<br>
-            <span style="font-size:0.75rem; color:var(--gold-light);">악군 패키지 마스터 백과사전</span>
-        </div>
-        <nav class="lang-switcher" aria-label="언어 선택">
-            <a href="/" class="active" lang="ko" hreflang="ko" onclick="window.__d2SaveLang && __d2SaveLang('ko')">한국어</a>
-            <a href="/en/" lang="en" hreflang="en" onclick="window.__d2SaveLang && __d2SaveLang('en')">English</a>
-        </nav>
-        <div class="sidebar-search">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" class="search-input" placeholder="검색어 입력..." oninput="filterContent()">
-        </div>
-        <ul class="nav-menu">
-            <li><button class="nav-btn active" onclick="switchSection(event, 'builds')">1. 종결 빌드</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'uniques')">2. 유니크 으뜸</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'runes')">3. 룬어 족보</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'charms')">4. 신 파괴참</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'uber')">5. 우버 바바/주얼</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'cubing')">6. 큐빙&크래프트</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'runelist')">7. 룬 번호표</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'merc')">8. 용병 세팅</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'frame')">9. 프레임 표</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'quest')">10. 영구보상 퀘스트</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'bus')">11. 버스 가이드</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'farming')">12. TC85 사냥터</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'ladder')">13. 래더 시즌 소식</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'leveling')">14. 육성 가이드</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'dropcalc')">15. 매찬 계산기</button></li>
-            <li><button class="nav-btn" onclick="switchSection(event, 'feedback')">16. 피드백/제보</button></li>
-        </ul>
-    </aside>
-
-    <main class="main-content">
-
-        <header class="desktop-only">
-            <h1>⚔️ DIABLO II RESURRECTED - 악군 패키지 마스터 종결 백과사전 (ULTIMATE EDITION) ⚔️</h1>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>1125 Labs</h1>
+            <p class="intro">
+                내가 필요해서 만들고, 재미있어서 계속 만드는 것들을 기록합니다.<br>
+                완성된 프로젝트도 있고, 아직 개발 중인 프로젝트도 있습니다.<br>
+                작게 시작해서 하나씩 만들어가고 있습니다.
+            </p>
         </header>
 
-        <div class="container">
-
-    <section id="builds" class="content-section active">
-        <h2 class="section-title">🛡️ 1. 직업별 상세 종결 빌드 가이드</h2>
-        <div class="item-click-hint">💡 상단의 필터를 활용하거나, 카드를 클릭하여 <b>인게임 장비 슬롯(페이퍼돌)</b> 종결 세팅을 확인하세요. 시즌을 처음부터 키우실 때는 <span class="item-inline" onclick="event.stopPropagation(); switchSection(null, 'leveling')">14. 육성 가이드</span>를 먼저 보시면 됩니다.</div>
-        
-        <div class="filter-tags">
-            <button class="filter-btn active" onclick="filterBuilds(event, 'all')">전체보기</button>
-            <button class="filter-btn" onclick="filterBuilds(event, 'magic')">⚡ 원소 마법</button>
-            <button class="filter-btn" onclick="filterBuilds(event, 'physical')">⚔️ 물리 타격</button>
-            <button class="filter-btn" onclick="filterBuilds(event, 'summon')">💀 소환형</button>
-            <button class="filter-btn" onclick="filterBuilds(event, 'farm')">🌾 앵벌/카우방</button>
-            <button class="filter-btn" onclick="filterBuilds(event, 'boss')">🔥 횃불/우버 킬러</button>
-        </div>
-
-        <div class="grid-cards" id="buildCardsGrid">
-            
-        </div>
-
-        <!-- AdSense: only filled after build cards render; hidden on feedback -->
-        <div class="mobile-ad mobile-incontent-ad site-ad is-hidden" aria-label="모바일 본문 광고" aria-hidden="true">
-            <div class="mobile-ad-inner">
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8514352833859910" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <!-- Live services: readable without JS (AdSense / crawlers) -->
+        <section>
+            <h2 class="section-title">운영 중 서비스</h2>
+            <div class="featured-list">
+                <article class="featured-card">
+                    <span class="tag">운영 중</span>
+                    <h3>디아블로 백서</h3>
+                    <p>
+                        디아블로 II 레저렉션을 플레이하며 모은 실전 정보를 한곳에 정리한 백과사전입니다.
+                        보조 모니터에 띄워두고 사냥·세팅을 확인할 수 있도록 구성했습니다.
+                    </p>
+                    <ul>
+                        <li>직업별 종결 빌드와 페이퍼돌(장비 슬롯) 가이드</li>
+                        <li>룬어 족보, 유니크 요약, 육성·버스·TC85 사냥터 정리</li>
+                        <li>매찬(매직 파인드) 드랍 확률 계산기, 한국어/English 페이지</li>
+                    </ul>
+                    <p>
+                        광고는 이처럼 <strong>실제 가이드 콘텐츠가 있는 서비스 페이지</strong>에만 게재합니다.
+                        본 허브(1125labs.com)에는 광고를 두지 않습니다.
+                    </p>
+                    <a class="service-link" href="https://diablo.1125labs.com/" target="_blank" rel="noopener noreferrer">diablo.1125labs.com 방문 →</a>
+                </article>
+                <article class="featured-card">
+                    <span class="tag">운영 중</span>
+                    <h3>모닝 팩터 (Morning Factor)</h3>
+                    <p>
+                        환율·유가·금·지수와 주요 빅테크 시세를 매일 수집하고,
+                        AI로 등락 원인을 정리해 Slack 모닝 브리핑으로 보내는 개인용 자동화 대시보드입니다.
+                    </p>
+                    <a class="service-link" href="https://briefings.1125labs.com/" target="_blank" rel="noopener noreferrer">briefings.1125labs.com 방문 →</a>
+                </article>
             </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section>
+            <h2 class="section-title">Projects</h2>
+
+            <!-- Status Tabs -->
+            <div class="tab-group" id="tabGroup">
+                <button class="tab-btn active" onclick="filterProjects('all', this)">전체</button>
+                <button class="tab-btn" onclick="filterProjects('live', this)">운영 중</button>
+                <button class="tab-btn" onclick="filterProjects('dev', this)">개발 중</button>
+                <button class="tab-btn" onclick="filterProjects('dead', this)">중단됨</button>
+            </div>
+
+            <!-- Project Cards List -->
+            <div class="project-list" id="projectList">
+                <!-- JS로 프로젝트 데이터 렌더링 -->
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section>
+            <h2 class="section-title">About 1125 Labs</h2>
+            <div class="text-block">
+                <p>1125 Labs는 회사가 아닙니다.</p>
+                <p>
+                    필요한 것을 직접 만들어보고,<br>
+                    궁금한 것을 실험하고,<br>
+                    만들면서 배운 것들을 기록하는 작은 공간입니다.
+                </p>
+                <p>
+                    이 사이트(<strong>1125labs.com</strong>)는 프로젝트 목록을 모아 두는 <strong>허브</strong>입니다.
+                    각 서비스의 본문 콘텐츠는 <strong>서브도메인</strong>에서 따로 운영합니다.
+                    예를 들어 디아블로 공략·데이터베이스는
+                    <a href="https://diablo.1125labs.com/" style="color:var(--accent-color)">diablo.1125labs.com</a>에서 제공합니다.
+                </p>
+                <p>
+                    완성된 프로젝트만 보여주기보다는<br>
+                    아직 만들어가는 중인 프로젝트와 그 과정도 함께 기록하려고 합니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- What's next Section -->
+        <section>
+            <h2 class="section-title">What's next?</h2>
+            <div class="text-block">
+                <p>
+                    새로운 아이디어가 생기면 또 하나씩 만들어볼 예정입니다.<br>
+                    어쩌면 완성되지 않을 수도 있고, 생각보다 오래 걸릴 수도 있습니다.<br>
+                    그래도 일단 만들어봅니다.
+                </p>
+                <p class="quote">Build. Learn. Repeat.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div>© 1125 Labs</div>
+            <div style="margin-top:10px;">
+                <a href="/privacy.html">개인정보 처리방침</a>
+                <a href="https://diablo.1125labs.com/">디아블로 백서</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal Window -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeModalOnOverlay(event)">
+        <div class="modal-window">
+            <div class="modal-header">
+                <div>
+                    <h3 class="modal-title" id="modalTitle">-</h3>
+                </div>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-subtitle" id="modalSubtitle">-</div>
+            <div class="modal-body" id="modalBody">-</div>
+            <div class="modal-actions" id="modalActions"></div>
         </div>
-    </section>
+    </div>
 
-    <section id="uniques" class="content-section">
-        <h2 class="section-title">💎 2. 주요 유니크 아이템 핵심 요약 및 드랍 장소</h2>
-        <div class="item-click-hint">🟠 유니크 이름을 클릭하면 상세 옵션 및 으뜸 수치 팝업을 확인할 수 있습니다.</div>
-        <table>
-            <thead><tr><th>아이템 명칭</th><th>기본 베이스</th><th>대표 주요 드랍 장소 / 팁</th></tr></thead>
-            <tbody id="uniqueTbody"></tbody>
-        </table>
-    </section>
-
-<section id="runes" class="content-section">
-    <h2 class="section-title">📜 3. 핵심 룬어 조합법 족보</h2>
-    <div class="item-click-hint">💡 <b>아이템명을 클릭하면</b> 상세 베이스, 조합 순서 및 으뜸 수치를 볼 수 있습니다.</div>
+    <script>
+        const PROJECTS = [
+            {
+                id: 'morning-factor',
+                status: 'live',
+                badgeText: '운영 중',
+                title: '01. 모닝 팩터 (Morning Factor)',
+                subtitle: 'Collection & Big Tech Insights',
+                preview: '글로벌 거시경제(환율/유가/금/지수) 및 빅테크 시세 수집 & AI 등락 원인 심층 분석',
+                desc: `매일 아침 글로벌 거시경제(환율/유가/금/지수) 및 주요 빅테크 종목들의 시세 변동을 자동 수집하고, AI를 통해 항목별 구체적인 등락 원인을 심층 분석하여 기록하는 자동화 대시보드입니다.<br><br>
+                • <strong>핵심 기능</strong>: 매일 아침 Slack 모닝 브리핑 발송, 180일 히스토리 데이터 누적, 자산군별 인터랙티브 차트 및 AI 인과관계 리포트 뷰어 제공.`,
+                url: 'https://briefings.1125labs.com',
+                linkText: '대시보드 바로가기'
+            },
+            {
+                id: 'diablo',
+                status: 'live',
+                badgeText: '운영 중',
+                title: '02. 디아블로 백서',
+                subtitle: 'Diablo II Resurrected Encyclopedia',
+                preview: '종결 빌드·룬어·유니크·육성·매찬 계산기까지 정리한 D2R 실전 백과사전',
+                desc: `디아블로 II 레저렉션을 플레이하며 모은 정보를 한곳에 정리한 실전 백과사전입니다.<br><br>
+                • <strong>종결 빌드</strong>: 직업별 페이퍼돌 세팅과 필터<br>
+                • <strong>아이템 DB</strong>: 룬어 족보, 유니크 요약, 신 파괴참·우버 관련 정리<br>
+                • <strong>시즌 초반</strong>: 육성 가이드, 버스, TC85 사냥터<br>
+                • <strong>도구</strong>: 매찬 대비 드랍 확률 계산기, 한국어/English<br><br>
+                광고는 콘텐츠가 있는 이 서비스(<code>diablo.1125labs.com</code>)에만 게재합니다.`,
+                url: 'https://diablo.1125labs.com',
+                linkText: '디아블로 백서 방문'
+            },
+            {
+                id: 'booki',
+                status: 'dev',
+                badgeText: '개발 중',
+                title: '03. Booki — 독서 통장',
+                subtitle: 'Book Reading Tracker',
+                preview: '책을 읽고 기록하는 과정을 통장처럼 차곡차곡 쌓아가는 독서 기록 서비스',
+                desc: `책을 읽고 기록하는 과정을 하나씩 쌓아가는 독서 기록 서비스입니다.<br><br>
+                단순히 읽은 책의 목록을 저장하는 것이 아니라, 내가 어떤 책을 읽어왔고 무엇을 쌓아가고 있는지를 볼 수 있도록 만들고 있습니다.<br><br>
+                책 한 권을 읽을 때마다 독서 통장에 기록이 쌓이는 것처럼 읽은 시간과 책에 대한 기록이 차곡차곡 남는 서비스를 구축 중입니다.<br><br>
+                🚧 <strong>현재 개발 진행 중입니다.</strong>`,
+                url: null
+            },
+            {
+                id: 'fig-layer',
+                status: 'dev',
+                badgeText: '가칭 · 개발 중',
+                title: '04. 돌무화과 레이어',
+                subtitle: 'Bible Context Exploration Layer',
+                preview: '성경 본문과 인물, 역사적 배경과 맥락을 여러 층위(Layer)로 살펴보는 탐구 도구',
+                desc: `성경을 읽고 탐구하기 위한 앱입니다.<br><br>
+                본문을 읽는 것에서 끝나지 않고, 성경 속 인물과 사건, 역사적 배경과 맥락 등을 여러 층(Layer)으로 살펴볼 수 있는 형태를 기획하고 있습니다.<br><br>
+                아직 이름과 형태를 계속 구체화하며 만들어가는 중입니다.<br><br>
+                🚧 <strong>현재 개발 진행 중입니다.</strong>`,
+                url: null
+            },
+            {
+                id: 'fintrack',
+                status: 'dead',
+                badgeText: '중단됨',
+                title: 'FinTrack 💀',
+                subtitle: 'Personal Finance Tracking Project',
+                preview: '재무를 쉽게 관리해보려 했으나, 지속적 사용 이유의 중요성을 깨닫고 아카이빙된 프로젝트',
+                desc: `개인 재무를 쉽게 관리해보려고 시작했던 프로젝트입니다.<br><br>
+                <strong>• 프로젝트가 멈춘 이유</strong><br>
+                재무 앱은 단순히 기록을 쉽게 만드는 것만으로는 부족했습니다. 사용자가 계속 기록하게 만들려면 자동화가 필요했고, 자동화를 구현하려면 금융 데이터 연동이라는 훨씬 큰 장벽이 따라왔습니다.<br><br>
+                결국 앱을 만드는 기술적 문제보다 <em>'사용자가 계속 사용할 이유를 만드는 문제'</em>가 더 어려웠다는 값진 교훈을 남기고 개발을 중단했습니다.<br><br>
+                🪦 <strong>개발이 중단된 아카이브 프로젝트입니다.</strong>`,
+                url: null
+            }
+        ];
     
-    <!-- 룬어 테이블이 동적으로 렌더링될 영역 -->
-    <table id="runewordsTable">
-        <thead>
-            <tr><th>룬어 명칭</th><th>조합 룬</th></tr>
-        </thead>
-        <tbody id="runewordsTbody">
-            <!-- JS가 runewords.json을 읽어와서 여기에 <tr>들을 꽂아넣습니다 -->
-        </tbody>
-    </table>
-</section>
-
-    <section id="charms" class="content-section">
-        <h2 class="section-title">🔮 4. '잠복하는 파괴참' 업그레이드 및 '새로워진 파괴참' 6종 족보</h2>
-        <div class="item-click-hint">✨ 파괴참 이름을 클릭하면 <b>드랍 장소</b>, 상세 큐빙 공식과 확장 스펙을 확인할 수 있습니다.</div>
-        <table>
-            <thead><tr><th>파괴참 명칭 (속성)</th><th>핵심 요약 정보</th></tr></thead>
-            <tbody>
-                <tr class="searchable-item"><td class="unique"><span class="item-inline" onclick="openSunderModal(40001)">새로워진 불길의 균열 (화염 파괴참)</span></td><td>괴물의 화염 면역 파괴 + 적 화염 저항 -7% + 모든 능력치 +4</td></tr>
-                <tr class="searchable-item"><td class="unique"><span class="item-inline" onclick="openSunderModal(40002)">새로워진 추위의 파열 (냉기 파괴참)</span></td><td>괴물의 냉기 면역 파괴 + FHR +20% + 적 냉기 저항 -6%</td></tr>
-                <tr class="searchable-item"><td class="unique"><span class="item-inline" onclick="openSunderModal(40003)">새로워진 천상의 틈 (번개 파괴참)</span></td><td>괴물의 번개 면역 파괴 + FHR +24% + 적 번개 저항 -9%</td></tr>
-                <tr class="searchable-item"><td class="unique"><span class="item-inline" onclick="openSunderModal(40004)">새로워진 부패의 분열 (독 파괴참)</span></td><td>괴물의 독 면역 파괴 + 적 독 저항 -6% + 모든 능력치 +5</td></tr>
-                <tr class="searchable-item"><td class="unique"><span class="item-inline" onclick="openSunderModal(40005)">새로워진 뼈의 분쇄 (물리 파괴참)</span></td><td>괴물의 물리 면역 파괴 + 피해 +87% 증가 + 모든 능력치 +8</td></tr>
-                <tr class="searchable-item"><td class="unique"><span class="item-inline" onclick="openSunderModal(40006)">새로워진 칠흑의 천공 (마법 파괴참)</span></td><td>괴물의 마법 면역 파괴 + 이속 +7% + 적 마법 저항 -6%</td></tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="uber" class="content-section">
-        <h2 class="section-title">💀 5. 우버 이벤트, 횃불 퀘스트 및 악군 전용 우버 바바(삼형제 동상) 드랍 족보</h2>
-        <h3 style="color: var(--gold); margin-top: 10px; margin-bottom: 10px;">🛡️ 종결 부적(애니참/횃불) 획득 족보</h3>
-        <div class="item-click-hint">🟠 부적 이름을 클릭하면 상세 옵션 및 획득 방법을 확인할 수 있습니다.</div>
-        <table>
-            <thead><tr><th>이벤트 / 횃불</th><th>소환 및 진행 방법</th><th>핵심 드랍 보상</th></tr></thead>
-            <tbody>
-                <tr class="searchable-item"><td class="highlight"><span class="item-inline" onclick="openCharmModal(50001)">우버 디아블로 (섬멸의 부적)</span></td><td>서버 내 <b>요르단의 반지(조던링 판매)</b> 이벤트 발생 시 출현</td><td><span class="unique">섬멸의 부적 (애니참)</span> (+1 스킬, 올스탯 +20, 올저 +20)</td></tr>
-                <tr class="searchable-item"><td class="highlight"><span class="item-inline" onclick="openCharmModal(50002)">횃불 퀘스트 (지옥의 횃불)</span></td><td><b>공포/증오/파괴 열쇠 세트</b> 큐빙 → <b>장기 3종</b> 추출 → 트리스트럼</td><td><span class="unique">지옥의 횃불 (횃불참)</span> (+3 직업스킬, 올스탯 +20, 올저 +20)</td></tr>
-            </tbody>
-        </table>
-
-        <h3 style="color: var(--gold); margin-top: 25px; margin-bottom: 10px;">⚔️ 악군 전용 우버 바바 소환법 및 삼형제별 주얼 드랍 족보</h3>
-        <div class="item-click-hint">🔥 삼형제 이름을 클릭하면 상세 소환법과 전용 주얼(스펙) 목록을 확인할 수 있습니다.</div>
-        <table>
-            <thead><tr><th>처치 대상 (삼바바)</th><th>고유 속성 타입</th><th>주요 드랍 전용 주얼/부적 종류</th></tr></thead>
-            <tbody>
-                <tr class="searchable-item"><td class="highlight"><span class="item-inline" onclick="openUberModal(60001)">마더크 (Madawc)</span></td><td>⚡ 번개 / ✨ 마법</td><td>감시자의 천둥 (번개), 수호자의 빛 (매직) 주얼</td></tr>
-                <tr class="searchable-item"><td class="highlight"><span class="item-inline" onclick="openUberModal(60002)">탈릭 (Talic)</span></td><td>🔥 화염 / ☠️ 독</td><td>수호자의 역정 (독), 보호자의 불꽃 (화염) 주얼</td></tr>
-                <tr class="searchable-item"><td class="highlight"><span class="item-inline" onclick="openUberModal(60003)">콜릭 (Korlic)</span></td><td>❄️ 냉기 / ⚔️ 물리</td><td>보호자의 서리 (냉기) 주얼 및 물리형 전용 종결 부적</td></tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="cubing" class="content-section">
-        <h2 class="section-title">🧪 6. 호라드림의 함 필수 큐빙, 스킬참 돌리기 및 크래프트 족보</h2>
-        <table>
-            <thead><tr><th>목적 / 종류</th><th>조합 공식 (재료)</th><th>종결 목표 옵션 (으뜸 족보)</th></tr></thead>
-            <tbody>
-                <tr class="searchable-item"><td class="highlight">무기 소켓 뚫기 (랜덤)</td><td>일반(노말) 무기 + <span class="rune">랄(Ral) + 앰(Amn) + 최상급 자수정</span></td><td>무기 베이스에 따라 1~최대 소켓 랜덤 생성</td></tr>
-                <tr class="searchable-item"><td class="highlight">갑옷 소켓 뚫기 (랜덤)</td><td>일반(노말) 갑옷 + <span class="rune">탈(Tal) + 주울(Thul) + 최상급 토파즈</span></td><td>갑옷 베이스에 따라 1~최대 소켓 랜덤 생성</td></tr>
-                <tr class="searchable-item"><td class="highlight">투구 소켓 뚫기 (랜덤)</td><td>일반(노말) 투구 + <span class="rune">랄(Ral) + 주울(Thul) + 최상급 사파이어</span></td><td>투구 베이스에 따라 1~최대 소켓 랜덤 생성</td></tr>
-                <tr class="searchable-item"><td class="highlight">방패 소켓 뚫기 (랜덤)</td><td>일반(노말) 방패 + <span class="rune">탈(Tal) + 앰(Amn) + 최상급 루비</span></td><td>방패 베이스에 따라 1~최대 소켓 랜덤 생성</td></tr>
-                <tr class="searchable-item"><td class="highlight">피스킬참 큐빙 (돌리기)</td><td>iLvl 91+ 그랜드참 (바알/디아/니라트하크 드랍) + <span class="rune">최상급 보석 3개</span></td><td>+1 [직업스킬] / <span class="highlight">+45 생명력</span> (최상급 그랜드참 갬블/돌리기)</td></tr>
-                <tr class="searchable-item"><td class="highlight">희귀 아이템 재설정</td><td>희귀 아이템 + <span class="rune">최상급 해골 6개</span></td><td>옵션 완전 재설정 (희귀 서클릿/아뮬렛)</td></tr>
-                <tr class="searchable-item"><td class="highlight">패캐 목걸이 크래프트</td><td>매직 목걸이 + <span class="rune">Ral 룬 + 최상급 자수정 + 잡주얼</span></td><td><span class="highlight">+2스킬 / 20% 패캐</span> / 피 / 마나 / 모든 저항</td></tr>
-                <tr class="searchable-item"><td class="highlight">강타 장갑 크래프트</td><td>매직 가죽장갑계열 + <span class="rune">Nef 룬 + 최상급 루비 + 잡주얼</span></td><td><span class="highlight">+2스킬 / 20공속 / 10% 강타</span> / 흡혈 / 민첩 / 피</td></tr>
-                <tr class="searchable-item"><td class="highlight">소켓 룬 파괴/제거</td><td>소켓 장비 + <span class="rune">Hel 룬 + 마을 차원문 주문서</span></td><td>장비는 남고 박혀있던 룬/주얼만 파괴 제거</td></tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="runelist" class="content-section">
-        <h2 class="section-title">🔢 7. 룬 번호, 등급 및 상위 룬 합성 공식</h2>
-        <div class="item-click-hint">💡 1번 엘부터 33번 조드까지 전부 나열합니다. 합성 공식은 <b>그 룬을 만들기 위한</b> 큐브 재료입니다.</div>
-        <div class="leveling-table-wrap">
-        <table>
-            <thead><tr><th>룬 번호</th><th>룬 명칭</th><th>룬 등급</th><th>상위 룬 합성 공식 (큐빙 재료)</th><th>주요 쓰임새</th></tr></thead>
-            <tbody id="runeListTbody">
-            </tbody>
-        </table>
-        </div>
-    </section>
-
-<section id="merc" class="content-section">
-        <h2 class="section-title">🗡️ 8. 용병 종결 세팅 가이드</h2>
-        <div class="item-click-hint">💡 각 장비 슬롯 박스를 클릭하면 상세 옵션 및 으뜸 수치 팝업을 확인할 수 있습니다.</div>
-        
-        <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-            
-            <!-- 2막 사막 용병 카드 -->
-            <div class="card searchable-item" style="background: #141418; border: 1px solid var(--card-border); padding: 16px;">
-                <h3 style="color: var(--gold); font-size: 1.05rem; margin-bottom: 4px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">2막 사막 용병 (국민/범용)</h3>
-                <p style="font-size: 0.8rem; color: #a1a1aa; margin-bottom: 12px;">오라: 위세(Might) 또는 신성한 빙결</p>
-                <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
-                    <div class="paperdoll-slot" onclick="openRuneModal(30008)" style="cursor:pointer;">
-                        <div class="slot-title">용병 무기</div>
-                        <div class="slot-item rune"><span class="item-inline">무한 (무공)</span> 또는 <span class="item-inline" onclick="event.stopPropagation(); openRuneModal(30018)">통찰</span></div>
+        let currentFilter = 'all';
+    
+        function renderProjects() {
+            const listEl = document.getElementById('projectList');
+            const filtered = currentFilter === 'all' 
+                ? PROJECTS 
+                : PROJECTS.filter(p => p.status === currentFilter);
+    
+            listEl.innerHTML = filtered.map(p => `
+                <div class="card" onclick="openModal('${p.id}')">
+                    <div class="card-header">
+                        <h3 class="card-title">${p.title}</h3>
+                        <span class="badge ${p.status}">${p.badgeText}</span>
                     </div>
-                    <div class="paperdoll-slot" onclick="openRuneModal(30020)" style="cursor:pointer;">
-                        <div class="slot-title">용병 갑옷</div>
-                        <div class="slot-item rune"><span class="item-inline">에테르형 인내 (Fortitude)</span></div>
-                    </div>
-                    <div class="paperdoll-slot" onclick="openUniqueModal(20007)" style="cursor:pointer;">
-                        <div class="slot-title">용병 투구</div>
-                        <div class="slot-item unique"><span class="item-inline">에테르형 안다리엘의 두건</span></div>
+                    <div class="card-subtitle">${p.subtitle}</div>
+                    <p class="card-desc-preview">${p.preview}</p>
+                    <div class="card-hint">
+                        <span>상세 보기</span> ➔
                     </div>
                 </div>
-            </div>
-
-            <!-- 1막 궁수 용병 카드 -->
-            <div class="card searchable-item" style="background: #141418; border: 1px solid var(--card-border); padding: 16px;">
-                <h3 style="color: var(--gold); font-size: 1.05rem; margin-bottom: 4px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">1막 궁수 용병 (원거리 지원)</h3>
-                <p style="font-size: 0.8rem; color: #a1a1aa; margin-bottom: 12px;">오라: 파나티시즘 (신뢰 활마용)</p>
-                <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
-                    <div class="paperdoll-slot" onclick="openRuneModal(30009)" style="cursor:pointer;">
-                        <div class="slot-title">용병 무기</div>
-                        <div class="slot-item rune"><span class="item-inline">신념 (Faith)</span></div>
-                    </div>
-                    <div class="paperdoll-slot" onclick="openRuneModal(30020)" style="cursor:pointer;">
-                        <div class="slot-title">용병 갑옷</div>
-                        <div class="slot-item rune"><span class="item-inline">인내</span> 또는 <span class="item-inline" onclick="event.stopPropagation(); openRuneModal(30017)">배신(Treachery)</span></div>
-                    </div>
-                    <div class="paperdoll-slot" onclick="openUniqueModal(20007)" style="cursor:pointer;">
-                        <div class="slot-title">용병 투구</div>
-                        <div class="slot-item unique"><span class="item-inline">안다리엘의 두건</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3막 마법 용병 카드 -->
-            <div class="card searchable-item" style="background: #141418; border: 1px solid var(--card-border); padding: 16px;">
-                <h3 style="color: var(--gold); font-size: 1.05rem; margin-bottom: 4px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">3막 철학자/마법 용병</h3>
-                <p style="font-size: 0.8rem; color: #a1a1aa; margin-bottom: 12px;">속성: 불꽃 또는 번개 마법사</p>
-                <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
-                    <div class="paperdoll-slot" onclick="openRuneModal(30007)" style="cursor:pointer;">
-                        <div class="slot-title">용병 무기 & 방패</div>
-                        <div class="slot-item rune"><span class="item-inline">영혼 검</span> + 모나크 방패</div>
-                    </div>
-                    <div class="paperdoll-slot" onclick="openRuneModal(30020)" style="cursor:pointer;">
-                        <div class="slot-title">용병 갑옷</div>
-                        <div class="slot-item rune"><span class="item-inline">인내</span> 또는 <span class="item-inline" onclick="event.stopPropagation(); openRuneModal(30011)">명예의 굴레</span></div>
-                    </div>
-                    <div class="paperdoll-slot" onclick="openUniqueModal(20005)" style="cursor:pointer;">
-                        <div class="slot-title">용병 투구</div>
-                        <div class="slot-item unique"><span class="item-inline">샤코 (Harlequin Crest)</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5막 야만용사 용병 카드 (슬레이어의 갈기 모달 연동 완료) -->
-            <div class="card searchable-item" style="background: #141418; border: 1px solid var(--card-border); padding: 16px;">
-                <h3 style="color: var(--gold); font-size: 1.05rem; margin-bottom: 4px; border-bottom: 1px solid var(--card-border); padding-bottom: 8px;">5막 야만용사 용병 (근접)</h3>
-                <p style="font-size: 0.8rem; color: #a1a1aa; margin-bottom: 12px;">역할: 최전방 탱커 및 광폭 딜러</p>
-                <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
-                    <div class="paperdoll-slot" onclick="openRuneModal(30013)" style="cursor:pointer;">
-                        <div class="slot-title">용병 무기</div>
-                        <div class="slot-item rune">쌍 <span class="item-inline">고뇌 (Grief)</span> 또는 법제관</div>
-                    </div>
-                    <div class="paperdoll-slot" onclick="openRuneModal(30020)" style="cursor:pointer;">
-                        <div class="slot-title">용병 갑옷</div>
-                        <div class="slot-item rune"><span class="item-inline">에테르형 인내 (Fortitude)</span></div>
-                    </div>
-                    <div class="paperdoll-slot" onclick="openUniqueModal(20016)" style="cursor:pointer;">
-                        <div class="slot-title">용병 투구</div>
-                        <div class="slot-item unique"><span class="item-inline">아리앗의 얼굴</span> 또는 <span class="item-inline" onclick="event.stopPropagation(); openUniqueModal(20033)">기욤의 얼굴</span></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-            
-    <section id="frame" class="content-section">
-        <h2 class="section-title">⚡ 9. 주요 직업 FCR / FHR / IAS 프레임 표</h2>
-        <table>
-            <thead><tr><th>구분</th><th>직업 (Class)</th><th>목표 프레임</th><th>필요 수치 (%)</th></tr></thead>
-            <tbody>
-                <tr class="searchable-item"><td class="highlight">패캐 (FCR)</td><td>원소술사 (Sorceress)</td><td>8프레임 / 7프레임</td><td>105% / <span class="highlight">200%</span></td></tr>
-                <tr class="searchable-item"><td class="highlight">패캐 (FCR)</td><td>성기사 / 강령 / 악마술사</td><td>10프레임 / 9프레임</td><td>75% / <span class="highlight">125%</span></td></tr>
-                <tr class="searchable-item"><td class="highlight">패힛 (FHR)</td><td>전 직업 공통 (타격 회복)</td><td>6프레임 / 5프레임</td><td>42% / <span class="highlight">86%</span> (안정권 86%)</td></tr>
-                <tr class="searchable-item"><td class="highlight">공속 (IAS)</td><td>왚바바 (휠윈드 6연타)</td><td>무기 자체 공속 기준</td><td>페이즈고뇌 기준 <span class="highlight">30%+ 공속</span> 필수</td></tr>
-                <tr class="searchable-item"><td class="highlight">공속 (IAS)</td><td>자바마 (번개분노 프레임)</td><td>9프레임 / 8프레임</td><td>52% / <span class="highlight">89%</span></td></tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="quest" class="content-section">
-        <h2 class="section-title">📜 10. 난이도별 영구 보상 퀘스트 족보 (스킬/스탯/저항/소켓/개인화)</h2>
-        <div style="margin-bottom: 15px; font-size: 0.95rem; background: var(--card-bg); padding: 12px; border-left: 3px solid var(--gold); border-radius: 4px;">
-            <span class="highlight">💡 필수 퀘스트 체크포인트:</span> 디아블로 2는 노말, 악몽, 지옥 난이도별로 아래 퀘스트들을 반드시 클리어해야 영구적인 스킬 포인트, 스탯, 모든 저항, 그리고 장비 소켓과 마법부여(개인화) 혜택을 챙길 수 있습니다. (캐릭터당 난이도별 총 3회 반복 가능)
-        </div>
-        <table>
-            <thead><tr><th>액트 / 퀘스트 명칭</th><th>수행 내용 및 위치</th><th>영구 보상 효과</th></tr></thead>
-            <tbody>
-                <tr class="searchable-item">
-                    <td><b>Act 1 퀘스트 1</b><br>(악의 소굴 / Den of Evil)</td>
-                    <td>로그 캠프 밖 '악의 소굴' 내 모든 몬스터 처치 (아카라 보상)</td>
-                    <td><b>스킬 포인트 +1</b>, 스탯/스킬 초기화 기회 1회 (아카라에게 무료 재분배)</td>
-                </tr>
-                <tr class="searchable-item">
-                    <td><b>Act 2 퀘스트 1</b><br>(라다멘트의 소굴 / Radament's Lair)</td>
-                    <td>하수도 3층(루트 골레인 하수도)에서 '라다멘트' 처치</td>
-                    <td><b>스킬 포인트 +1</b>, 모든 스킬 북(+1 스킬 줌) 및 상점 할인 혜택</td>
-                </tr>
-                <tr class="searchable-item">
-                    <td><b>Act 3 퀘스트 4</b><br>(라만 에센의 책 / Lam Esen's Tome)</td>
-                    <td>쿠라스트 상시가(쿠라스트 하수도/사원 등) 내 '폐허의 사원' 안에서 책 획득 (오르먼드 보상)</td>
-                    <td><b>스탯 포인트 +5</b> (영구 반영)</td>
-                </tr>
-                <tr class="searchable-item">
-                    <td><b>Act 4 퀘스트 1</b><br>(타락한 천사 / The Fallen Angel)</td>
-                    <td>혼돈의 성역(카오스) 가기 전 '평원 외곽' → '절망의 평원'에서 <b>이주알</b> 처치 (티리엘 보상)</td>
-                    <td><b>스킬 포인트 +2</b> (영구 반영)</td>
-                </tr>
-                <tr class="searchable-item">
-                    <td><b>Act 5 퀘스트 1</b><br>(영웅의 안식처 / Rescue on Mount Arreat)</td>
-                    <td>프리지드 하이랜드(얼어붙은 고원) 주변 우리에 갇힌 야만용사(바바리안) 전사들 구출 (라주크 보상)</td>
-                    <td><b>장비 업그레이드 및 룬 보상:</b> 랄(Ral), 오르트(Ort), 탈(Tal) 룬 및 방어구 제작 지원</td>
-                </tr>
-                <tr class="searchable-item">
-                    <td><b>Act 5 퀘스트 2</b><br>(아리앗의 구원 / Rite of Passage - 개인화)</td>
-                    <td>바바 3형제(고대인) 처치 후 바알의 미니언들 및 바알 처치 (라주크 보상)</td>
-                    <td><b>아이템 개인화 (마법부여):</b> 장비에 자신의 캐릭터 이름을 새겨 고유 아이템화 함 (+ 방어력/내구도 소폭 상승 버프)</td>
-                </tr>
-                <tr class="searchable-item">
-                    <td><b>Act 5 퀘스트 3</b><br>(얼어붙은 강 / Prisoners of Ice)</td>
-                    <td>프로즌 리버(얼어붙은 강)에서 얼어붙은 연금술사 <b>말라 구출</b> 후 니라트하크 처치 (말라/라주크 보상)</td>
-                    <td><b>모든 저항 +10%</b> (말라 보상, 난이도별 영구 합산 총 +30%) 및 라주크 <b>소켓 뚫기</b> 권한 획득</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="bus" class="content-section">
-        <h2 class="section-title">🚌 11. Act 1~5 필수 퀘스트, 웨이포인트 위치 및 버스(Rush) 가이드</h2>
-        <div style="margin-bottom: 15px; font-size: 0.95rem; background: var(--card-bg); padding: 12px; border-left: 3px solid var(--magic-blue); border-radius: 4px;">
-            <span class="highlight">⏱️ 난이도별(Act 1~5) 총 돌파 소요 시간:</span> 
-            템과 기사 스펙이 받쳐줄 때 일반적인 쾌속 버스로 난이도 하나(노말/나이트/헬)를 뚫는 데 걸리는 총 시간은 <b>약 20분 ~ 30분 내외</b>입니다. (Act 2 지팡이 스킵 및 텔포 소서 기사 기준 / Act 3 장기 퀘스트는 필수) <br>
-            <span class="highlight">🚌 범퍼 글리치:</span> 고대인 렙제(20/40/60) 미달 캐릭터를 태울 때는 바알 퀘스트 공유 범퍼를 활용하세요!
-        </div>
-        <table>
-            <thead><tr><th>액트 (Act) / 소요 시간</th><th>필수 퀘스트 조건 (반드시 깨야 넘어감)</th><th>기사 & 승객 행동 요령 및 웨이포인트/던전 위치 족보</th></tr></thead>
-            <tbody>
-                <tr class="searchable-item">
-                    <td><b>Act 1</b><br><span style="font-size: 0.75rem; color: var(--gold);">소요시간: 약 3~5분</span></td>
-                    <td>
-                        <ul>
-                            <li><b>퀘스트 6 (안다리엘):</b> 카타콤 4층의 안다리엘 처치</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <b>[기사]</b> 카타콤 4층 신속 이동 후 안다리엘 처치 직전 포탈 오픈.<br>
-                        <b>[승객]</b> 포탈 대기 후 킬 확인 즉시 마을의 <b>와리브</b>와 대화하여 Act 2 이동.
-                    </td>
-                </tr>
-                <tr class="searchable-item">
-                    <td><b>Act 2</b><br><span style="font-size: 0.75rem; color: var(--gold);">소요시간: 약 5~7분</span></td>
-                    <td>
-                        <ul>
-                            <li><b>퀘스트 2 (호라드림 지팡이):</b> 3개 재료 조합 (함, 지팡이, 목걸이)
-                                <ul class="sub-list">
-                                    <li>- 호라드림의 함: <b>[메마른 언덕] 웨이포인트</b> → <b>[망자의 전당 3층]</b></li>
-                                    <li>- 왕들의 지팡이: <b>[파 오아시스] 웨이포인트</b> → <b>[구더기 굴 3층]</b></li>
-                                    <li>- 독사의 목걸이: <b>[잊혀진 도시] 웨이포인트</b> → <b>[발톱 독사 사원 2층]</b></li>
-                                </ul>
-                            </li>
-                            <li><b>퀘스트 4 (아케인):</b> <b>[비전의 성역] 웨이포인트</b> 이동 후 <b>소환술사</b> 처치</li>
-                            <li><b>퀘스트 6 (듀리엘):</b> 탈라샤 무덤 속 <b>듀리엘</b> 처치</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <b>[기사 & 팁]</b> 지팡이를 직접 만들지 않고 지팡이가 있는 다른 방의 헬퍼 캐릭터를 데려오거나 미리 완성해두면 지팡이 퀘스트를 완전히 스킵할 수 있습니다!<br>
-                        <b>[승객]</b> 소환술사 킬 후 캐니언 이동, 듀리엘 사망 후 포탈 타서 <b>티리엘 → 제린 → 메쉬프</b> 순 대화 후 Act 3 이동.
-                    </td>
-                </tr>
-                <tr class="searchable-item">
-                    <td><b>Act 3</b><br><span style="font-size: 0.75rem; color: var(--gold);">소요시간: 약 5분</span></td>
-                    <td>
-                        <ul>
-                            <li><b>퀘스트 3 (칼림의 의지):</b> 4개 재료 조합 (눈, 뇌, 심장, 도리깨) 후 증오의 억류지 진입
-                                <ul class="sub-list">
-                                    <li>- 칼림의 눈: <b>[거미 숲] 웨이포인트</b> → <b>[거미 동굴]</b></li>
-                                    <li>- 칼림의 뇌: <b>[약탈자 밀림] 웨이포인트</b> → <b>[약탈자 던전 3층]</b></li>
-                                    <li>- 칼림의 심장: <b>[쿠라스트 시장] 웨이포인트</b> → <b>[쿠라스트 하수도 1층]</b></li>
-                                    <li>- 칼림의 도리깨: <b>[트라빈칼] 웨이포인트</b> → <b>[하이 카운슬(의회원)] 처치</b></li>
-                                </ul>
-                            </li>
-                            <li><b>퀘스트 5 (신전):</b> 트라빈칼의 <b>의회원(카운슬)</b> 처치</li>
-                            <li><b>퀘스트 6 (메피스토):</b> 증오의 억류지 3층 <b>메피스토</b> 처치</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <b>[기사 & 팁]</b> Act 3는 칼림의 의지(장기 모으기)를 포함해 <b>필수 퀘스트를 모두 클리어</b>해야 메피스토 방으로 진입할 수 있습니다. 장기 4종(눈/뇌/심장/도리깨)을 모아 큐빙한 뒤 증오의 억류지로 들어가세요.<br>
-                        <b>[승객]</b> 트라빈칼 의회원 킬 메시지 확인 시 마을 <b>케인</b> 대화. 메피스토 킬 후 <b>지옥의 문(빨간 포탈)</b>로 Act 4 진입.
-                    </td>
-                </tr>
-                <tr class="searchable-item">
-                    <td><b>Act 4</b><br><span style="font-size: 0.75rem; color: var(--gold);">소요시간: 약 3분</span></td>
-                    <td>
-                        <ul>
-                            <li><b>퀘스트 3 (공포의 결말):</b> 혼돈의 성역(카오스) 5개 씨일 해제 후 <b>디아블로</b> 처치</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <b>[기사]</b> 텔포로 5개 씨일을 신속히 열고 디아블로를 순삭합니다.<br>
-                        <b>[승객]</b> 마을 대기 후 디아블로 처치 완료 시 <b>티리엘</b>과 대화하여 해로개쓰(Act 5) 이동.
-                    </td>
-                </tr>
-                <tr class="searchable-item">
-                    <td><b>Act 5</b><br><span style="font-size: 0.75rem; color: var(--gold);">소요시간: 약 5~8분</span></td>
-                    <td>
-                        <ul>
-                            <li><b>퀘스트 5 (고대인의 통과의례):</b> 아리앗 정상 <b>바바 3형제</b> 처치 (렙제: 노말 20, 악몽 40, 지옥 60)</li>
-                            <li><b>퀘스트 6 (파멸의 전야):</b> 세계석 성채 <b>바알</b> 처치</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <b>[기사]</b> 아리앗 정상 고대인 소환 후 처치, 세계석 성채 2층 웨이를 타고 쓰론(왕좌)으로 진입해 5연전 및 바알을 처치합니다.<br>
-                        <b>[승객]</b> 레벨 충족 시 고대인 클리어 후 바알 방 입장. 미달 시 마을 대기 후 <b>범퍼 캐릭터</b>를 통해 바알 퀘스트 클리어 연계.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="farming" class="content-section">
-        <h2 class="section-title">🎯 12. TC 85 주요 사냥터 및 공포의 영역(Terror Zones) & 전령 등급별 가이드</h2>
-        <div style="margin-bottom: 15px; font-size: 0.95rem; background: var(--card-bg); padding: 12px; border-left: 3px solid var(--gold); border-radius: 4px;">
-            <span class="highlight">⚠️ 지옥(Hell) 난이도 기본 저항력:</span> 기본적으로 모든 저항력이 <b>-100% 감쇄</b>되므로, 황금 저항(75%)을 맞추기 위해서는 아이템으로 총 +175%의 저항을 챙겨야 합니다.<br><br>
-            <span class="highlight">🌀 공포의 영역 (Terror Zones) & 전령 (Herald) 등급 메커니즘:</span> 
-            30분마다 무작위로 지정되는 공포의 영역 내에서는 몬스터 레벨이 극대화되며, 강력한 <b>전령(Herald)</b> 무리가 등장합니다. 전령은 처치 난이도와 보상에 따라 <b>티어(Tier) 등급</b>으로 나뉘며 고등급 전령일수록 희귀 전리품과 파괴참 드랍 확률이 크게 상승합니다.<br><br>
-            • <b>티어 1 (Tier 1 - 일반 전령):</b> TZ 내 일반 몬스터 무리를 이끄는 소규모 정예. 기본 매직/레어 아이템 및 하위 재료 드랍.<br>
-            • <b>티어 2 (Tier 2 - 강화된 전령 무리):</b> 챔피언 및 고유 몬스터 조합으로 구성된 강력한 추적자. 희귀 장비 및 '잠복하는 파괴참' 드랍율 보정.<br>
-            • <b>티어 3 이상 (Tier 3+ - 최상급 종결 전령 및 우수 보스):</b> 세계석 조각, 고대인 조각상 및 헤럴드 급의 최상위 엘리트 보스. 희귀 등급 이상의 아이템 드랍 확률이 대폭 상향되며 엔드게임 파밍의 핵심 표적.
-        </div>
-        <table>
-            <thead><tr><th>액트</th><th>기본 고정 TC 85 지역</th><th>공포의 영역(TZ) 활성화 시 주요 특징 및 전령 등급별 조우</th></tr></thead>
-            <tbody>
-                <tr class="searchable-item"><td>Act 1</td><td class="highlight">구덩이 (피트 1, 2층), 매장지(지하 묘실/영묘)</td><td>초반 앵벌 성지. 피트 및 카타콤 TZ 지정 시 티어 1~2 전령 무리와 함께 대량 경험치 제공</td></tr>
-                <tr class="searchable-item"><td>Act 2</td><td class="highlight">고대의 하수도, 탈 라샤의 무덤</td><td>냉기 면역 몹이 적어 극블리 소서에게 최적. 툼(Tombs) TZ 및 티어 2~3 전령 파밍 명소</td></tr>
-                <tr class="searchable-item"><td>Act 3</td><td class="highlight">쿠라스트 하수도/사원, 트라빈칼</td><td>의회원 반복 파밍 및 룬/장신구, 티어 2 전령 저격에 특화된 지역</td></tr>
-                <tr class="searchable-item"><td>Act 4</td><td class="highlight">혼돈의 성역 (카오스 샌크츄어리)</td><td>고정 맵 구조와 높은 몹 밀집도로 파밍 및 경험치 효율 부동의 1위</td></tr>
-                <tr class="searchable-item"><td>Act 5</td><td class="highlight">세계석 성채, 왕좌의 방, 바알방</td><td>모든 최상급 유니크/룬 드랍 및 <b>티어 3 이상 최상급 전령 및 지역 보스 인카운터</b>가 기다리는 종착지</td></tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section id="ladder" class="content-section">
-        <h2 class="section-title">🔥 13. 디아블로 2 레저렉션 패치 노트 아카이브</h2>
-        <p style="font-size: 0.9rem; color: #a1a1aa; margin-bottom: 15px;">과거부터 현재까지의 상세 패치 내역을 확인하세요. 시즌 초 육성은 <span class="item-inline" onclick="switchSection(null, 'leveling')">14. 육성 가이드</span>를 보시면 됩니다.</p>
-        
-        <!-- 자바스크립트가 patchnotes.json을 읽어와서 이 안에 자동으로 꽂아넣습니다 -->
-        <div id="patch-notes-container">
-            <!-- 패치 노트가 동적으로 로드됩니다 -->
-        </div>
-    </section>
-
-    <section id="leveling" class="content-section">
-        <h2 class="section-title">🌱 14. 처음부터 따라가는 육성 가이드</h2>
-        <div class="item-click-hint">💡 룬어 이름을 클릭하면 조합식과 권장 베이스를 볼 수 있습니다. 직업 카드의 종결 버튼은 1번 메뉴 페이퍼돌로 이어집니다.</div>
-        <div id="levelingRoot"></div>
-    </section>
-
-    <section id="dropcalc" class="content-section">
-        <h2 class="section-title">🎯 15. 매찬 대비 드랍 확률 계산기</h2>
-        <div class="item-click-hint">
-            매찬 수치를 넣고 계산하시면, 주요 유니크별 드랍 확률이 아래에 나옵니다.
-            유니크는 매찬이 오를수록 확률이 올라가지만, 체감 효율은 점점 줄어듭니다.
-            각 아이템은 가장 잘 나오는 기준(1킬)으로 계산합니다.
-        </div>
-
-        <form id="dropcalcForm" class="dropcalc-form" onsubmit="calculateDropOdds(event)">
-            <label class="dropcalc-field">
-                <span>내 매찬 (%)</span>
-                <input type="number" id="dropcalcMf" name="mf" min="0" max="2000" step="1" value="250" inputmode="numeric" required>
-            </label>
-            <label class="dropcalc-field dropcalc-field-grow">
-                <span>아이템 검색</span>
-                <input type="text" id="dropcalcItemFilter" name="item" placeholder="예: 샤코, 그리폰, 조단">
-            </label>
-            <button type="submit" class="dropcalc-submit">계산하기</button>
-        </form>
-
-        <div class="dropcalc-presets" aria-label="매찬 빠른 입력">
-            <span>빠른 입력:</span>
-            <button type="button" class="filter-btn" onclick="setDropCalcMf(0)">0</button>
-            <button type="button" class="filter-btn" onclick="setDropCalcMf(150)">150</button>
-            <button type="button" class="filter-btn" onclick="setDropCalcMf(250)">250</button>
-            <button type="button" class="filter-btn" onclick="setDropCalcMf(350)">350</button>
-            <button type="button" class="filter-btn" onclick="setDropCalcMf(500)">500</button>
-        </div>
-
-        <div id="dropcalcResults" class="dropcalc-results" hidden></div>
-    </section>
-
-    <section id="feedback" class="content-section">
-        <h2 class="section-title">📩 16. 백과사전 피드백 및 정보 제보</h2>
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); padding: 20px; border-radius: 8px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
-            <h3 style="color: var(--gold); font-size: 1.2rem; margin-bottom: 8px;">💡 빠진 정보가 있거나 잘못된 정보가 있나요?</h3>
-            <p style="font-size: 0.9rem; color: var(--text-color); margin-bottom: 18px; word-break: keep-all;">
-                유니크 으뜸 옵션, 룬어 재료, 신규 패치 내용 등 누락된 정보나 수정이 필요한 내용을 제보해 주세요.<br>
-                여러분의 집단지성으로 더욱 정확한 백과사전을 만들어갑니다!
-            </p>
-            <button onclick="openFeedbackModal()" style="background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%); color: #0b0b0e; font-weight: bold; border: none; padding: 12px 28px; font-size: 0.95rem; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 15px rgba(223, 177, 91, 0.3); transition: transform 0.2s ease;">
-                ✍️ 정보 제보 / 의견 보내기
-            </button>
-        </div>
-    </section>
-
-        </div>
-    </main>
-
-    <aside class="side-ad right-ad site-ad is-hidden" aria-label="우측 광고" aria-hidden="true">
-        <div class="side-ad-inner">
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:160px;height:600px"
-                 data-ad-client="ca-pub-8514352833859910"></ins>
-        </div>
-    </aside>
-
-</div>
-
-<div id="databaseItemModal" class="item-modal" role="dialog" aria-modal="true">
-    <div class="item-modal-panel" onclick="event.stopPropagation()">
-        <div class="item-modal-head">
-            <div id="dbModalTitle" class="item-modal-title">아이템 상세</div>
-            <button class="item-modal-close" onclick="closeDatabaseModal()" aria-label="닫기">&times;</button>
-        </div>
-        <div class="item-modal-body">
-            <div class="item-art-wrap" id="dbModalArt">
-                <div class="d2-item-art">
-                    <div class="d2-armor"></div>
-                </div>
-            </div>
-            <div class="item-detail">
-                <h4 id="dbModalSubtitle">상세 정보</h4>
-                <p id="dbModalIntro"></p>
-                <div class="item-stats" id="dbModalStats"></div>
-                <button id="dbModalRecipeBtn" class="item-action" onclick="copyDatabaseValue()">📋 정보 복사</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="itemModal" class="item-modal" role="dialog" aria-modal="true" aria-labelledby="itemModalTitle">
-    <div class="item-modal-panel" onclick="event.stopPropagation()">
-        <div class="item-modal-head">
-            <div id="itemModalTitle" class="item-modal-title">아이템 상세</div>
-            <button class="item-modal-close" onclick="closeItemModal()" aria-label="닫기">&times;</button>
-        </div>
-        <div class="item-modal-body">
-            <div class="item-art-wrap">
-                <div class="d2-item-art" aria-label="수수께끼 아이템 이미지">
-                    <div class="d2-armor-image-container">
-                        <img src="/items/runes/enigma.png" 
-                             alt="수수께끼" 
-                             onerror="this.style.display='none'; document.getElementById('fallback-center-box').style.display='flex';">
-                    </div>
-                    <div id="fallback-center-box" class="fallback-center-wrap" style="display: none;">
-                        <div class="d2-armor"></div>
-                        <div class="rune-sequence">
-                            <span class="rune-gem">JAH</span>
-                            <span class="rune-gem">ITH</span>
-                            <span class="rune-gem">BER</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item-detail">
-                <h4 id="itemModalSubtitle">수수께끼 · Enigma</h4>
-                <p id="itemModalIntro">3소켓 갑옷에 자 + 아이드 + 베르 순서로 넣어 만드는 대표적인 종결 룬어입니다.</p>
-                <div class="item-stats" id="itemModalStats"></div>
-                <button class="item-action" onclick="copyItemRecipe()">📋 룬 조합 순서 복사</button>
-                <div id="itemModalNote" style="margin-top:14px; color:#858590; font-size:.78rem;"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="paperDollModal" class="item-modal" role="dialog" aria-modal="true">
-    <div class="item-modal-panel" onclick="event.stopPropagation()">
-        <div class="item-modal-head">
-            <div>
-                <div id="pdModalTitle" class="item-modal-title">직업 종결 빌드 가이드</div>
-                <div id="pdModalSubtitle" style="color:var(--gold-light); font-size:0.85rem; margin-top:2px;"></div>
-            </div>
-            <button class="item-modal-close" onclick="closePaperDollModal()">&times;</button>
-        </div>
-        <div style="padding: 10px;">
-            <p style="margin-bottom: 15px; color: #a1a1aa; font-size: 0.85rem;">💡 아래 인벤토리 장비 슬롯을 참고하여 종결 스펙을 세팅하세요.</p>
-            <div class="paperdoll-grid" id="pdModalGrid"></div>
-            <div style="margin-top: 20px;" id="pdModalStats"></div>
-            <button class="item-action" onclick="event.stopPropagation(); copyPaperDollValue();">
-                📋 빌드 내용 복사하기
-            </button>
-        </div>
-    </div>
-</div>
-
-<div id="feedbackModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 10000; justify-content: center; align-items: center; padding: 15px; backdrop-filter: blur(5px);">
-    <div style="background: var(--card-bg); border: 2px solid var(--gold); padding: 25px; border-radius: 12px; width: 100%; max-width: 500px; color: var(--text-bright); box-shadow: 0 10px 30px rgba(0,0,0,0.9); position: relative;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; margin-bottom: 18px;">
-            <h3 style="color: var(--gold); font-size: 1.2rem; margin: 0;">📩 정보 제보 및 피드백</h3>
-            <span onclick="closeFeedbackModal()" style="color: #aaa; font-size: 1.5rem; font-weight: bold; cursor: pointer; line-height: 1;">&times;</span>
-        </div>
-        
-        <form id="feedbackForm" onsubmit="handleFeedbackSubmit(event)">
-            <div style="margin-bottom: 14px;">
-                <label style="display: block; font-size: 0.85rem; color: var(--gold-light); margin-bottom: 6px; font-weight: bold;">닉네임 <span style="color:#888; font-weight:normal;">(선택)</span></label>
-                <input type="text" id="fbNick" maxlength="20" autocomplete="nickname" placeholder="배틀넷/인벤 닉 · 비워도 제보됩니다" style="width: 100%; padding: 10px; background: #111115; color: var(--text-bright); border: 1px solid var(--card-border); border-radius: 6px; font-size: 0.9rem; outline: none; box-sizing: border-box;">
-            </div>
-            <div style="margin-bottom: 14px;">
-                <label style="display: block; font-size: 0.85rem; color: var(--gold-light); margin-bottom: 6px; font-weight: bold;">제보 유형</label>
-                <select id="fbType" required style="width: 100%; padding: 10px; background: #111115; color: var(--text-bright); border: 1px solid var(--card-border); border-radius: 6px; font-size: 0.9rem; outline: none;">
-                    <option value="누락 정보 제보">📌 누락된 아이템/스펙/조합법 제보</option>
-                    <option value="오류 수정">✏️ 오타 및 잘못된 정보 수정 요청</option>
-                    <option value="기능 제안">💡 새로운 기능 및 편의성 제안</option>
-                    <option value="기타">💬 기타 문의</option>
-                </select>
-            </div>
-
-            <div style="margin-bottom: 18px;">
-                <label style="display: block; font-size: 0.85rem; color: var(--gold-light); margin-bottom: 6px; font-weight: bold;">상세 제보 내용</label>
-                <textarea id="fbContent" required rows="5" style="width: 100%; padding: 12px; background: #111115; color: var(--text-bright); border: 1px solid var(--card-border); border-radius: 6px; font-size: 0.9rem; outline: none; resize: vertical;" placeholder="예) 새로워진 불길의 균열 파괴참 조합법에서 이오룬 대신 다른 룬으로 기재되어 있습니다. 확인 부탁드립니다!"></textarea>
-            </div>
-
-            <div style="display: flex; justify-content: flex-end; gap: 10px;">
-                <button type="button" onclick="closeFeedbackModal()" style="padding: 10px 20px; background: #22222a; color: var(--text-color); border: 1px solid var(--card-border); border-radius: 6px; cursor: pointer; font-size: 0.88rem;">취소</button>
-                <button type="submit" style="padding: 10px 22px; background: var(--gold); color: #0b0b0e; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 0.88rem;">제출하기</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<a href="#" class="top-btn" title="맨 위로 이동">▲</a>
-
-<!-- 기존 inline onclick 호환용 전역 함수. ES Module 로딩 전에도 메뉴가 동작합니다. -->
-<script src="/js/legacy-globals.js?v=12"></script>
-<!-- JSON 데이터 + UI + 모달 통합 진입점 -->
-    <script type="module" src="/js/main.js?v=33"></script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const searchInput = document.getElementById("searchInput");
-        if (searchInput) {
-            // 기존 onkeyup 속성이 있든 없든 강제로 이벤트 리스너를 장착합니다.
-            searchInput.addEventListener("input", function() {
-                if (typeof filterContent === "function") {
-                    filterContent();
-                } else {
-                    console.error("filterContent 함수를 찾을 수 없습니다.");
-                }
-            });
-            console.log("🔍 악군 백과사전 전역 검색 감지기가 정상 부착되었습니다.");
-        } else {
-            console.error("searchInput 요소를 찾지 못했습니다.");
+            `).join('');
         }
-    });
-</script>
-
-<footer style="text-align: center; padding: 20px; font-size: 0.75rem; color: #666; border-top: 1px solid #262630; margin-top: 50px;">
-    <p>© LEVI SHIN. All rights reserved. | <span id="siteVersionDisplay"></span></p>
-    <p style="margin-top: 5px;">
-        본 사이트는 구글 애드센스를 통해 광고를 제공하며, 맞춤형 광고 제공을 위해 쿠키(Cookie)를 사용할 수 있습니다. 
-        | <a href="https://policies.google.com/technologies/ads?hl=ko" target="_blank" style="color: #888; text-decoration: underline;">구글 개인정보처리방침 확인</a>
-    </p>
-</footer>
-
-<!-- 패치 히스토리 모달 -->
-<div id="historyModal" class="database-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
-    <div class="modal-content" style="background:#15151b; border:1px solid #333; padding:25px; width:90%; max-width:500px; border-radius:8px; color:#ddd; position:relative;">
-        <h3 style="color:var(--gold-light, #dfb15b); margin-bottom:15px;">📜 사이트 패치 히스토리</h3>
-        <div id="historyModalBody" style="max-height:300px; overflow-y:auto; font-size:0.9rem; line-height:1.6;"></div>
-        <button onclick="closeHistoryModal()" style="margin-top:20px; width:100%; padding:10px; background:#262630; border:1px solid #444; color:#fff; cursor:pointer; border-radius:4px;">닫기</button>
-    </div>
-</div>
-
+    
+        function filterProjects(status, btnEl) {
+            currentFilter = status;
+            document.querySelectorAll('#tabGroup .tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            renderProjects();
+        }
+    
+        function openModal(id) {
+            const project = PROJECTS.find(p => p.id === id);
+            if (!project) return;
+    
+            document.getElementById('modalTitle').innerText = project.title;
+            document.getElementById('modalSubtitle').innerText = project.subtitle;
+            document.getElementById('modalBody').innerHTML = project.desc;
+    
+            const actionsEl = document.getElementById('modalActions');
+            if (project.url) {
+                // onclick="closeModal()" 추가됨
+                actionsEl.innerHTML = `
+                    <button class="btn-secondary" onclick="closeModal()">닫기</button>
+                    <a href="${project.url}" target="_blank" rel="noopener noreferrer" class="btn-link" onclick="closeModal()">🔗 ${project.linkText || '바로가기'}</a>
+                `;
+            } else {
+                actionsEl.innerHTML = `
+                    <button class="btn-secondary" onclick="closeModal()">닫기</button>
+                `;
+            }
+    
+            document.getElementById('modalOverlay').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    
+        function closeModalOnOverlay(e) {
+            if (e.target.id === 'modalOverlay') {
+                closeModal();
+            }
+        }
+    
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    
+        renderProjects();
+    </script>
 </body>
 </html>
