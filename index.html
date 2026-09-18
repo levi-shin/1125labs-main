@@ -450,6 +450,15 @@
             </p>
         </header>
 
+        <p style="margin:-24px 0 32px;font-size:0.92rem;">
+            <a href="/about.html" style="color:var(--accent-color);margin-right:14px;text-decoration:none;">About</a>
+            <a href="/projects/diablo.html" style="color:var(--accent-color);margin-right:14px;text-decoration:none;">디아블로 백서 소개</a>
+            <a href="/projects/morning-factor.html" style="color:var(--accent-color);margin-right:14px;text-decoration:none;">모닝 팩터 소개</a>
+            <a href="/projects/jarvis.html" style="color:var(--accent-color);margin-right:14px;text-decoration:none;">자비스</a>
+            <a href="/projects/battery-check.html" style="color:var(--accent-color);margin-right:14px;text-decoration:none;">배터리 체크</a>
+            <a href="/privacy.html" style="color:var(--accent-color);text-decoration:none;">개인정보</a>
+        </p>
+
         <!-- Live services: readable without JS (AdSense / crawlers) -->
         <section>
             <h2 class="section-title">운영 중 서비스</h2>
@@ -467,6 +476,7 @@
                         <li>매찬(매직 파인드) 드랍 확률 계산기, 한국어/English 페이지</li>
                     </ul>
                     <a class="service-link" href="https://diablo.1125labs.com/" target="_blank" rel="noopener noreferrer">diablo.1125labs.com 방문 →</a>
+                    <div style="margin-top:10px;"><a href="/projects/diablo.html" style="color:#94a3b8;font-size:0.88rem;">허브에서 소개 글 읽기 →</a></div>
                 </article>
                 <article class="featured-card">
                     <span class="tag">운영 중</span>
@@ -476,6 +486,7 @@
                         AI로 등락 원인을 정리해 Slack 모닝 브리핑으로 보내는 개인용 자동화 대시보드입니다.
                     </p>
                     <a class="service-link" href="https://briefings.1125labs.com/" target="_blank" rel="noopener noreferrer">briefings.1125labs.com 방문 →</a>
+                    <div style="margin-top:10px;"><a href="/projects/morning-factor.html" style="color:#94a3b8;font-size:0.88rem;">허브에서 소개 글 읽기 →</a></div>
                 </article>
             </div>
         </section>
@@ -538,8 +549,12 @@
         <footer>
             <div>© 1125 Labs</div>
             <div style="margin-top:10px;">
+                <a href="/about.html">About</a>
+                <a href="/projects/diablo.html">디아블로 백서</a>
+                <a href="/projects/morning-factor.html">모닝 팩터</a>
+                <a href="/projects/jarvis.html">자비스</a>
+                <a href="/projects/battery-check.html">배터리 체크</a>
                 <a href="/privacy.html">개인정보 처리방침</a>
-                <a href="https://diablo.1125labs.com/">디아블로 백서</a>
             </div>
         </footer>
     </div>
@@ -614,6 +629,34 @@
                 아직 이름과 형태를 계속 구체화하며 만들어가는 중입니다.<br><br>
                 🚧 <strong>현재 개발 진행 중입니다.</strong>`,
                 url: null
+            },
+
+            {
+                id: 'jarvis',
+                status: 'dev',
+                badgeText: '개발 중',
+                title: '05. 자비스 (Jarvis)',
+                subtitle: 'Personal AI Assistant',
+                preview: '일상·작업을 도와주는 개인용 AI 어시스턴트',
+                desc: `반복되는 확인·정리·알림을 한곳에서 맡기기 위한 개인용 어시스턴트 프로젝트입니다.<br><br>
+                일정·할 일·메모를 짧게 묻고, 운영 중인 1125 Labs 서비스와 연결되는 빠른 조회·알림을 목표로 합니다.<br><br>
+                🚧 <strong>현재 개발 진행 중입니다.</strong> 공개 URL은 아직 없습니다.<br>
+                <a href="/projects/jarvis.html" style="color:#38bdf8;">소개 글 읽기 →</a>`,
+                url: null
+            },
+            {
+                id: 'battery-check',
+                status: 'dev',
+                badgeText: '개발 중',
+                title: '06. 배터리 체크',
+                subtitle: 'Battery Health Check',
+                preview: '기기 배터리 상태·수명을 쉽게 확인하는 도구',
+                desc: `노트북·모바일 등에서 배터리 용량·사이클·상태 요약을 한눈에 보려는 도구입니다.<br><br>
+                코드 저장소: <a href="https://github.com/levi-shin/batteryCheck" target="_blank" rel="noopener noreferrer" style="color:#38bdf8;">github.com/levi-shin/batteryCheck</a><br><br>
+                🚧 <strong>현재 개발 진행 중입니다.</strong><br>
+                <a href="/projects/battery-check.html" style="color:#38bdf8;">소개 글 읽기 →</a>`,
+                url: 'https://github.com/levi-shin/batteryCheck',
+                linkText: 'GitHub 저장소'
             },
             {
                 id: 'fintrack',

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="모닝 팩터 소개 — 거시경제·빅테크 시세 수집과 AI 등락 원인 브리핑">
+    <meta name="google-adsense-account" content="ca-pub-8514352833859910">
+    <link rel="canonical" href="https://1125labs.com/projects/morning-factor.html">
+    <title>모닝 팩터 소개 · 1125 Labs</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-color: #38bdf8;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.8;
+            display: flex;
+            justify-content: center;
+        }
+        .container { max-width: 720px; width: 100%; }
+        a { color: var(--accent-color); }
+        .back { display: inline-block; margin-bottom: 24px; text-decoration: none; font-size: 0.92rem; }
+        h1 { font-size: 1.85rem; color: var(--accent-color); margin: 0 0 10px; letter-spacing: -0.02em; }
+        .meta { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 28px; }
+        h2 {
+            font-size: 1.15rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin: 32px 0 14px;
+        }
+        p, li { color: var(--text-muted); word-break: keep-all; }
+        p { margin: 0 0 14px; }
+        ul { padding-left: 1.2rem; margin: 0 0 16px; }
+        li { margin-bottom: 8px; }
+        .cta {
+            display: inline-block;
+            margin: 8px 0 0;
+            background: var(--accent-color);
+            color: #0f172a;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 12px 18px;
+            border-radius: 8px;
+        }
+        .note {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 18px;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        footer {
+            margin-top: 48px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: #64748b;
+            font-size: 0.88rem;
+        }
+        footer a { color: #94a3b8; margin-right: 12px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back" href="/">← 1125 Labs 홈</a>
+        <h1>모닝 팩터 (Morning Factor)</h1>
+        <p class="meta">거시경제·빅테크 시세 수집 &amp; AI 등락 원인 브리핑 · 운영 중</p>
+
+        <p>
+            모닝 팩터는 매일 아침 환율·유가·금·주요 지수와 빅테크 종목 시세를 모아 두고,
+            항목별로 <strong>왜 움직였는지</strong>를 짧게 정리해 주는 개인용 자동화 대시보드입니다.
+            뉴스와 차트를 여러 탭에서 따로 열지 않아도,
+            “오늘 뭐가 얼마나 움직였고, 원인은 무엇인지”를 한 흐름으로 보게 만드는 것이 목표입니다.
+        </p>
+
+        <p>
+            <a class="cta" href="https://briefings.1125labs.com/" target="_blank" rel="noopener noreferrer">briefings.1125labs.com 열기 →</a>
+        </p>
+
+        <h2>무엇을 하나</h2>
+        <ul>
+            <li><strong>자동 수집</strong> — 거시 지표와 주요 종목 시세를 주기적으로 모아 기록</li>
+            <li><strong>AI 요약</strong> — 등락이 큰 항목에 대해 가능한 원인·맥락을 짧게 정리</li>
+            <li><strong>히스토리</strong> — 날짜별로 쌓인 기록을 다시 열어 볼 수 있음</li>
+            <li><strong>Slack 브리핑</strong> — 아침(필요 시 장마감)에 요약본을 메시지로 전달</li>
+        </ul>
+
+        <h2>누구를 위한가</h2>
+        <p>
+            전문 트레이딩 플랫폼을 대체하려는 서비스가 아닙니다.
+            오히려 <strong>매일 같은 체크리스트를 반복하는 사람</strong>을 위한
+            개인 브리핑 도구에 가깝습니다.
+            “관심 자산이 오늘 어떻게 움직였는지”를 빠르게 훑고,
+            더 깊게 볼 항목만 골라 다른 툴로 이어가면 됩니다.
+        </p>
+
+        <h2>왜 만들었나</h2>
+        <p>
+            아침마다 환율·지수·개별 종목을 따로 확인하고,
+            관련 뉴스를 다시 검색하는 시간이 아쉬웠습니다.
+            그래서 수집 → 요약 → 알림을 한 파이프라인으로 묶었습니다.
+            1125 Labs의 다른 프로젝트와 마찬가지로,
+            내가 쓰는 워크플로를 먼저 만들고 공개 형태로 정리한 결과입니다.
+        </p>
+
+        <div class="note">
+            이 페이지는 허브의 소개 글입니다. 차트·리포트·대시보드 본문은
+            <a href="https://briefings.1125labs.com/">briefings.1125labs.com</a>에서 이용하세요.
+        </div>
+
+        <h2>관련 링크</h2>
+        <ul>
+            <li><a href="https://briefings.1125labs.com/">모닝 팩터 대시보드</a></li>
+            <li><a href="/projects/diablo.html">디아블로 백서 소개</a></li>
+            <li><a href="/about.html">1125 Labs 소개</a></li>
+        </ul>
+
+        <footer>
+            <a href="/">홈</a>
+            <a href="/privacy.html">개인정보 처리방침</a>
+            <div style="margin-top:12px;">© 1125 Labs</div>
+        </footer>
+    </div>
+</body>
+</html>

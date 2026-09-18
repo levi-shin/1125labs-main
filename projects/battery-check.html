@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="배터리 체크 소개 — 기기 배터리 상태·수명을 쉽게 확인하는 도구">
+    <meta name="google-adsense-account" content="ca-pub-8514352833859910">
+    <link rel="canonical" href="https://1125labs.com/projects/battery-check.html">
+    <title>배터리 체크 소개 · 1125 Labs</title>
+    <style>
+        :root { --bg-color:#0f172a; --card-bg:#1e293b; --border-color:#334155; --text-main:#f8fafc; --text-muted:#94a3b8; --accent-color:#38bdf8; }
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif; background:var(--bg-color); color:var(--text-main); margin:0; padding:40px 20px; line-height:1.8; display:flex; justify-content:center; }
+        .container { max-width:720px; width:100%; }
+        a { color:var(--accent-color); }
+        .back { display:inline-block; margin-bottom:24px; text-decoration:none; font-size:0.92rem; }
+        h1 { font-size:1.85rem; color:var(--accent-color); margin:0 0 10px; }
+        .meta { color:var(--text-muted); font-size:0.92rem; margin-bottom:28px; }
+        h2 { font-size:1.15rem; border-bottom:1px solid var(--border-color); padding-bottom:8px; margin:32px 0 14px; }
+        p, li { color:var(--text-muted); word-break:keep-all; }
+        p { margin:0 0 14px; }
+        ul { padding-left:1.2rem; margin:0 0 16px; }
+        li { margin-bottom:8px; }
+        .cta { display:inline-block; margin:8px 0 16px; background:var(--accent-color); color:#0f172a; font-weight:700; text-decoration:none; padding:12px 18px; border-radius:8px; }
+        .badge { display:inline-block; font-size:0.75rem; padding:3px 9px; border-radius:20px; background:rgba(245,158,11,0.15); color:#fbbf24; border:1px solid rgba(245,158,11,0.3); margin-bottom:12px; }
+        .note { background:var(--card-bg); border:1px solid var(--border-color); border-radius:12px; padding:16px 18px; margin:20px 0; font-size:0.95rem; }
+        footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--border-color); color:#64748b; font-size:0.88rem; }
+        footer a { color:#94a3b8; margin-right:12px; text-decoration:none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back" href="/">← 1125 Labs 홈</a>
+        <div class="badge">개발 중 · GitHub</div>
+        <h1>배터리 체크</h1>
+        <p class="meta">기기 배터리 상태·수명을 쉽게 확인하는 도구</p>
+
+        <p>
+            배터리 체크는 노트북·모바일 등에서
+            <strong>지금 배터리 상태가 어떤지</strong>를 빠르게 보고 싶을 때 쓰는 도구를 목표로 합니다.
+            용량·사이클·충전 습관처럼 흩어진 정보를 한 화면에 모아,
+            “교체가 가까운지 / 아직 괜찮은지”를 감으로만 판단하지 않게 하는 것이 목적입니다.
+        </p>
+
+        <h2>만들고 싶은 것</h2>
+        <ul>
+            <li>현재 용량·설계 용량·사이클 등 핵심 지표 요약</li>
+            <li>충전 패턴과 상태 변화를 날짜별로 남기는 기록</li>
+            <li>교체·점검이 필요할 때 알 수 있는 간단한 기준 안내</li>
+            <li>전문 용어 없이도 읽히는 결과 화면</li>
+        </ul>
+
+        <p>
+            <a class="cta" href="https://github.com/levi-shin/batteryCheck" target="_blank" rel="noopener noreferrer">GitHub 저장소 보기 →</a>
+        </p>
+
+        <h2>현재 상태</h2>
+        <p>
+            코드는 <a href="https://github.com/levi-shin/batteryCheck" target="_blank" rel="noopener noreferrer">github.com/levi-shin/batteryCheck</a>에서 관리합니다.
+            공개 웹/스토어 링크가 생기면 이 페이지에 바로 추가합니다.
+        </p>
+
+        <div class="note">
+            저장소가 private이면 외부에서는 README를 볼 수 없습니다.
+            한 줄 소개(지원 기기·핵심 기능)를 알려주시면 허브 문구를 더 정확히 맞추겠습니다.
+        </div>
+
+        <h2>관련 링크</h2>
+        <ul>
+            <li><a href="/about.html">1125 Labs 소개</a></li>
+            <li><a href="/projects/jarvis.html">자비스 소개</a></li>
+            <li><a href="/projects/morning-factor.html">모닝 팩터 소개</a></li>
+        </ul>
+
+        <footer>
+            <a href="/">홈</a>
+            <a href="/privacy.html">개인정보 처리방침</a>
+            <div style="margin-top:12px;">© 1125 Labs</div>
+        </footer>
+    </div>
+</body>
+</html>
