@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="맥 배터리 용량·사이클·충전 패턴을 어떻게 읽는지 — 배터리 상태 체크 도구를 만들며 정리한 기초 가이드">
+    <meta name="google-adsense-account" content="ca-pub-8514352833859910">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://1125labs.com/guides/mac-battery-basics.html">
+    <title>맥 배터리 지표 읽는 법 · 1125 Labs</title>
+    <style>
+        :root { --bg:#0f172a; --card:#1e293b; --border:#334155; --text:#f8fafc; --muted:#94a3b8; --accent:#38bdf8; }
+        * { box-sizing:border-box; }
+        body { margin:0; padding:40px 20px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans KR',sans-serif; background:var(--bg); color:var(--text); line-height:1.85; display:flex; justify-content:center; }
+        .wrap { max-width:720px; width:100%; }
+        a { color:var(--accent); }
+        .back { display:inline-block; margin-bottom:20px; text-decoration:none; font-size:0.92rem; }
+        h1 { color:var(--accent); font-size:1.85rem; margin:0 0 10px; letter-spacing:-0.02em; }
+        .meta { color:var(--muted); font-size:0.9rem; margin-bottom:28px; }
+        h2 { font-size:1.18rem; border-bottom:1px solid var(--border); padding-bottom:8px; margin:34px 0 12px; }
+        h3 { font-size:1.02rem; color:#e2e8f0; margin:22px 0 8px; }
+        p, li { color:var(--muted); word-break:keep-all; }
+        p { margin:0 0 14px; }
+        ul, ol { padding-left:1.2rem; margin:0 0 16px; }
+        li { margin-bottom:8px; }
+        .box { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:18px 0; }
+        footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--border); color:#64748b; font-size:0.88rem; }
+        footer a { color:#94a3b8; margin-right:12px; text-decoration:none; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <a class="back" href="/">← 1125 Labs 홈</a>
+        <h1>맥 배터리 지표, 감이 아니라 숫자로 읽기</h1>
+        <p class="meta">가이드 · 배터리 상태 체크를 만들며 정리한 기초</p>
+
+        <p>
+            “요즘 배터리가 빨리 닳는 것 같다”는 느낌은 흔하지만,
+            그 느낌만으로는 충전 습관을 바꿀지, 교체를 알아볼지 결정하기 어렵습니다.
+            <a href="/projects/battery-check.html">배터리 상태 체크</a>를 만들면서
+            제가 먼저 정리한 것은 UI보다 <strong>어떤 숫자를 어떤 의미로 볼지</strong>였습니다.
+        </p>
+        <p>
+            이 글은 Apple의 공식 진단서를 대체하지 않습니다.
+            macOS에서 자주 보게 되는 지표를
+            일상 사용자가 해석할 때 헷갈리기 쉬운 지점만 풀어서 설명합니다.
+        </p>
+
+        <h2>1. 설계 용량과 현재(최대) 용량</h2>
+        <p>
+            설계 용량(design capacity)은 배터리가 새것일 때 기준으로 삼는 용량에 가깝습니다.
+            현재 최대 용량(full charge capacity)은 지금 완충했을 때
+            실제로 담을 수 있는 양에 가깝습니다.
+        </p>
+        <p>
+            둘을 비교하면 “새 제품 대비 얼마나 줄었는지”를 대략 볼 수 있습니다.
+            다만 기기·측정 시점·온도에 따라 숫자가 조금 달라질 수 있어,
+            한 번의 측정값으로 단정하기보다
+            <strong>같은 맥에서 며칠·몇 주 간격의 추세</strong>를 보는 편이 안전합니다.
+        </p>
+
+        <h2>2. 사이클 수</h2>
+        <p>
+            사이클은 보통 “배터리 용량의 100%에 해당하는 방전량이 쌓일 때마다 1회”에
+            가깝게 계산됩니다. 예를 들어 하루 50%씩 이틀 쓰면 약 1사이클이 될 수 있습니다.
+            (세부 계산은 기기·OS에 따라 다를 수 있습니다.)
+        </p>
+        <p>
+            사이클이 높다고 즉시 교체해야 하는 것은 아닙니다.
+            다만 용량 감소와 함께 보면
+            “사용량이 많아서 자연스럽게 줄고 있는지”를 이해하는 데 도움이 됩니다.
+        </p>
+
+        <h2>3. 충전 패턴이 중요한 이유</h2>
+        <p>
+            용량·사이클만 보면 “결과”만 보고, 패턴을 보면 “습관”을 봅니다.
+            아래는 도구가 판결을 내리기보다, 사용자가 스스로 점검할 때 쓰는 질문입니다.
+        </p>
+        <ul>
+            <li>항상 100%까지 채운 채 오래 두는가?</li>
+            <li>고온 환경에서 충전하는 시간이 긴가?</li>
+            <li>짧은 충전을 매우 자주 반복하는가?</li>
+            <li>방전을 극단적으로 깊게 자주 하는가?</li>
+        </ul>
+        <p>
+            정답 습관은 사용 환경마다 다릅니다.
+            중요한 것은 패턴을 볼 수 있어야
+            “느낌이 안 좋다”를 “이렇게 쓰고 있으니 이렇게 바꿔 보자”로 바꿀 수 있다는 점입니다.
+        </p>
+
+        <h2>4. 한 화면에 모으는 이유</h2>
+        <p>
+            macOS 설정·시스템 정보·서드파티 메뉴바 앱에 정보가 흩어져 있으면
+            매번 같은 길을 다시 찾게 됩니다.
+            배터리 상태 체크는 핵심 지표를 한곳에 모아
+            “지금 상태 요약 + 최근 변화”를 먼저 보여 주는 쪽을 목표로 했습니다.
+        </p>
+        <div class="box">
+            현재 상태: <strong>개발 완료</strong>. macOS용 <strong>.dmg</strong>는 준비되는 대로
+            <a href="/projects/battery-check.html">프로젝트 페이지</a>에 업로드할 예정입니다.
+        </div>
+
+        <h2>5. 잘못 읽기 쉬운 해석</h2>
+        <ul>
+            <li><strong>퍼센트만 보고 수명을 단정</strong> — 퍼센트 표기는 편의 지표일 뿐, 절대 건강 점수가 아닐 수 있습니다.</li>
+            <li><strong>하루 치 측정으로 교체 결정</strong> — 온도·부하에 따라 흔들릴 수 있으니 추세를 봅니다.</li>
+            <li><strong>사이클만으로 좋고 나쁨을 판단</strong> — 용량 변화·사용감과 함께 봐야 합니다.</li>
+            <li><strong>도구 결과를 공식 진단으로 취급</strong> — 교체·수리는 제조사·공인 서비스 기준이 우선입니다.</li>
+        </ul>
+
+        <h2>6. 허브에 이 글을 두는 이유</h2>
+        <p>
+            설치 파일과 앱 화면은 나중에 배포하더라도,
+            “지표를 어떻게 읽는지”는 지금 바로 읽을 수 있는 콘텐츠입니다.
+            1125 Labs 허브는 프로젝트 링크만 모아 두는 곳이 아니라,
+            이렇게 <strong>도구 뒤에 있는 기준</strong>을 글로 남기는 공간이기도 합니다.
+        </p>
+        <p>
+            비슷한 방식으로 디아블로 백서·모닝 팩터도
+            서비스(서브도메인)와 운영 가이드(허브)를 나눠 둡니다.
+        </p>
+
+        <div class="box">
+            관련 페이지:
+            <a href="/projects/battery-check.html">배터리 상태 체크</a> ·
+            <a href="/guides/d2r-season-checklist.html">D2R 시즌 체크리스트</a> ·
+            <a href="/notes/personal-tools.html">개인 도구를 공개하는 이유</a>
+        </div>
+
+        <footer>
+            <a href="/">홈</a>
+            <a href="/guides/">가이드</a>
+            <a href="/about.html">About</a>
+            <a href="/privacy.html">개인정보</a>
+            <div style="margin-top:12px;">© 1125 Labs</div>
+        </footer>
+    </div>
+</body>
+</html>
