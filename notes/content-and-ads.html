@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="1125 Labs 콘텐츠·광고 운영 원칙 — 허브와 서비스의 역할, 고유 콘텐츠, AdSense 관련 안내">
+    <meta name="google-adsense-account" content="ca-pub-8514352833859910">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://1125labs.com/notes/content-and-ads.html">
+    <title>콘텐츠·광고 운영 원칙 · 1125 Labs</title>
+    <style>
+        :root { --bg-color:#0f172a; --card-bg:#1e293b; --border-color:#334155; --text-main:#f8fafc; --text-muted:#94a3b8; --accent-color:#38bdf8; }
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif; background:var(--bg-color); color:var(--text-main); margin:0; padding:40px 20px; line-height:1.85; display:flex; justify-content:center; }
+        .container { max-width:720px; width:100%; }
+        a { color:var(--accent-color); }
+        .back { display:inline-block; margin-bottom:24px; text-decoration:none; font-size:0.92rem; }
+        h1 { font-size:1.85rem; color:var(--accent-color); margin:0 0 10px; letter-spacing:-0.02em; }
+        .meta { color:var(--text-muted); font-size:0.92rem; margin-bottom:28px; }
+        h2 { font-size:1.15rem; border-bottom:1px solid var(--border-color); padding-bottom:8px; margin:32px 0 14px; }
+        p, li { color:var(--text-muted); word-break:keep-all; }
+        p { margin:0 0 14px; }
+        ul { padding-left:1.2rem; margin:0 0 16px; }
+        li { margin-bottom:8px; }
+        .note { background:var(--card-bg); border:1px solid var(--border-color); border-radius:12px; padding:16px 18px; margin:20px 0; font-size:0.95rem; }
+        footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--border-color); color:#64748b; font-size:0.88rem; }
+        footer a { color:#94a3b8; margin-right:12px; text-decoration:none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a class="back" href="/">← 1125 Labs 홈</a>
+        <h1>콘텐츠·광고 운영 원칙</h1>
+        <p class="meta">노트 · 사이트 품질과 광고 배치</p>
+
+        <p>
+            1125 Labs는 개인 프로젝트 허브와 서비스 사이트로 구성됩니다.
+            이 글은 <strong>어떤 페이지에 무엇을 두고</strong>,
+            <strong>광고를 어디에 둘지</strong>를 스스로 정한 기준입니다.
+            Google 게시자 정책의 요약이 아니라, 이 사이트의 운영 메모에 가깝습니다.
+        </p>
+
+        <h2>1. 허브는 “읽을 수 있는 소개”를 둔다</h2>
+        <p>
+            <a href="https://1125labs.com/">1125labs.com</a>은 프로젝트 카드와 외부 링크만 있는
+            안내판이 되지 않도록 합니다.
+            About, 프로젝트 소개, 노트처럼
+            <strong>이 도메인에서만 읽히는 고유 글</strong>을 함께 둡니다.
+        </p>
+        <ul>
+            <li><a href="/about.html">About</a> — 무엇을 왜 만드는지, 작업 방식</li>
+            <li><a href="/projects/diablo.html">디아블로 백서 소개</a> — 사용 순서와 범위</li>
+            <li><a href="/projects/morning-factor.html">모닝 팩터 소개</a> — 브리핑 흐름과 한계</li>
+            <li><a href="/notes/personal-tools.html">개인 도구 노트</a> — 공개 이유</li>
+            <li><a href="/privacy.html">개인정보 처리방침</a></li>
+        </ul>
+        <p>
+            서비스 본문(빌드 표, 계산기, 대시보드)은 서브도메인에 있어도,
+            허브에는 “왜 / 어떻게 / 무엇을 다루지 않는지”가 남아 있어야 합니다.
+        </p>
+
+        <h2>2. 광고는 콘텐츠가 있는 곳에</h2>
+        <p>
+            허브에는 광고 슬롯을 두지 않는 것을 원칙으로 합니다.
+            방문자가 소개·노트를 읽는 화면을 광고로 가리지 않기 위해서입니다.
+            광고를 게재한다면
+            <strong>실제로 찾아 쓰는 가이드·도구가 있는 서비스 페이지</strong>에 한정합니다.
+            예: <a href="https://diablo.1125labs.com/">diablo.1125labs.com</a>.
+        </p>
+        <div class="note">
+            허브 HTML에는 Google AdSense 계정 소유권 확인용 메타 태그가 있을 수 있습니다.
+            이는 광고 슬롯 배치와는 별개이며, 허브에 배너를 넣는다는 뜻이 아닙니다.
+        </div>
+
+        <h2>3. 얇은 페이지를 만들지 않는다</h2>
+        <p>
+            아래 형태는 피하려고 합니다.
+        </p>
+        <ul>
+            <li>제목과 외부 링크만 있는 페이지</li>
+            <li>다른 사이트 문구를 거의 그대로 옮긴 소개</li>
+            <li>광고·제휴만 목적인 문장 없는 목록</li>
+            <li>자동 생성만으로 채운, 검증되지 않은 대량 페이지</li>
+        </ul>
+        <p>
+            대신 프로젝트를 올릴 때는
+            문제 정의, 사용 순서, 범위/비범위, 현재 상태처럼
+            방문자에게 실제로 도움이 되는 정보를 적습니다.
+            개발 중인 프로젝트도 “곧 공개” 한 줄로 끝내지 않고,
+            무엇을 만들고 있는지와 설계 기준을 남깁니다.
+        </p>
+
+        <h2>4. 내비게이션과 정책을 분명히</h2>
+        <p>
+            모든 주요 페이지에서 홈·About·프로젝트·개인정보로 이동할 수 있게 둡니다.
+            쿠키·광고·수집 정보는
+            <a href="/privacy.html">개인정보 처리방침</a>에 모읍니다.
+            사이트맵(<a href="/sitemap.xml">sitemap.xml</a>)에는 허브의 공개 글을 포함합니다.
+        </p>
+
+        <h2>5. 수정이 곧 품질이다</h2>
+        <p>
+            콘텐츠 품질은 한 번에 끝나는 작업이 아닙니다.
+            틀린 정보, 오래된 링크, 빠진 소개는 발견하는 대로 고칩니다.
+            서비스에 피드백 채널이 있으면 그쪽으로 받고,
+            허브 문구가 실제와 다르면 이 페이지들도 함께 갱신합니다.
+        </p>
+        <p>
+            요약하면, 1125 Labs는
+            <strong>먼저 쓸모 있는 도구와 설명을 만들고</strong>,
+            광고는 그 위의 부가 요소로만 다룹니다.
+        </p>
+
+        <footer>
+            <a href="/">홈</a>
+            <a href="/about.html">About</a>
+            <a href="/notes/personal-tools.html">개인 도구 노트</a>
+            <a href="/privacy.html">개인정보</a>
+            <div style="margin-top:12px;">© 1125 Labs</div>
+        </footer>
+    </div>
+</body>
+</html>
