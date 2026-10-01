@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="배터리 상태 체크 — macOS용 배터리 상태·수명 확인 도구. 개발 완료, .dmg 배포 예정">
+    <meta name="description" content="배터리 상태 체크 — iPad 배터리 상태를 확인하는 macOS 도구. iPadBatteryInspector.dmg 다운로드">
     <meta name="google-adsense-account" content="ca-pub-8514352833859910">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://1125labs.com/projects/battery-check.html">
@@ -23,7 +23,18 @@
         p { margin:0 0 14px; }
         ul { padding-left:1.2rem; margin:0 0 16px; }
         li { margin-bottom:8px; }
-        .cta { display:inline-block; margin:8px 0 16px; background:var(--card-bg); color:var(--text-muted); font-weight:600; text-decoration:none; padding:12px 18px; border-radius:8px; border:1px dashed var(--border-color); pointer-events:none; }
+        .cta {
+            display:inline-block;
+            margin:8px 0 8px;
+            background:var(--accent-color);
+            color:#0f172a;
+            font-weight:700;
+            text-decoration:none;
+            padding:12px 18px;
+            border-radius:8px;
+        }
+        .cta:hover { filter: brightness(1.05); }
+        .file-meta { font-size:0.88rem; color:#64748b; margin:0 0 20px; }
         .badge { display:inline-block; font-size:0.75rem; padding:3px 9px; border-radius:20px; background:rgba(52,211,153,0.15); color:#34d399; border:1px solid rgba(52,211,153,0.35); margin-bottom:12px; }
         .note { background:var(--card-bg); border:1px solid var(--border-color); border-radius:12px; padding:16px 18px; margin:20px 0; font-size:0.95rem; }
         footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--border-color); color:#64748b; font-size:0.88rem; }
@@ -33,35 +44,31 @@
 <body>
     <div class="container">
         <a class="back" href="/">← 1125 Labs 홈</a>
-        <div class="badge">개발 완료 · .dmg 예정</div>
+        <div class="badge">개발 완료 · 다운로드 가능</div>
         <h1>배터리 상태 체크</h1>
-        <p class="meta">Battery Status Check · macOS</p>
+        <p class="meta">iPadBatteryInspector · macOS</p>
 
         <p>
-            배터리 상태 체크는 macOS에서
-            <strong>지금 배터리 상태가 어떤지</strong>를 빠르게 보고 싶을 때 쓰는 도구입니다.
-            용량·사이클·충전 습관처럼 흩어진 정보를 한 화면에 모아,
+            배터리 상태 체크는 macOS에서 iPad 배터리 상태를
+            <strong>빠르게 확인</strong>할 때 쓰는 도구입니다.
+            용량·사이클처럼 흩어진 정보를 한 화면에 모아,
             “교체가 가까운지 / 아직 괜찮은지”를 감으로만 판단하지 않게 하는 것이 목적입니다.
         </p>
 
-        <h2>현재 상태</h2>
+        <h2>다운로드</h2>
         <p>
-            <strong>개발은 완료</strong>되었습니다.
-            설치용 <strong>.dmg</strong> 파일은 준비되는 대로 이 페이지에 업로드할 예정입니다.
-            업로드 전에는 GitHub 저장소에서 코드를 확인할 수 있습니다.
+            macOS용 설치 파일(<strong>.dmg</strong>)을 받을 수 있습니다.
         </p>
         <p>
-            <span class="cta">.dmg 다운로드 — 곧 공개</span>
+            <a class="cta" href="/downloads/iPadBatteryInspector.dmg" download="iPadBatteryInspector.dmg">iPadBatteryInspector.dmg 다운로드</a>
         </p>
-        <p>
-            코드: <a href="https://github.com/levi-shin/batteryCheck" target="_blank" rel="noopener noreferrer">github.com/levi-shin/batteryCheck</a>
-        </p>
+        <p class="file-meta">파일: iPadBatteryInspector.dmg · 약 2.9MB · macOS</p>
 
         <h2>왜 만들었나</h2>
         <p>
-            운영체제마다 배터리 정보는 다른 이름·다른 화면으로 나뉩니다.
-            설계 용량, 현재 최대 용량, 사이클 수, 충전 한도 같은 값이
-            한곳에 없으면 “요즘 빨리 닳는 것 같다”는 느낌만 남습니다.
+            배터리 정보는 설정·시스템 화면에 흩갈리게 흩어져 있는 경우가 많습니다.
+            설계 용량, 현재 최대 용량, 사이클 수 같은 값이 한곳에 없으면
+            “요즘 빨리 닳는 것 같다”는 느낌만 남습니다.
             배터리 상태 체크는 그 느낌을 <strong>몇 가지 숫자와 짧은 해석</strong>으로 바꿉니다.
         </p>
 
@@ -90,23 +97,23 @@
         <h2>포함되는 것</h2>
         <ul>
             <li>현재 용량·설계 용량·사이클 등 핵심 지표 요약</li>
-            <li>충전 패턴과 상태 변화를 날짜별로 남기는 기록</li>
-            <li>교체·점검이 필요할 때 알 수 있는 간단한 기준 안내</li>
-            <li>전문 용어 없이도 읽히는 결과 화면</li>
+            <li>상태를 한눈에 보는 결과 화면</li>
+            <li>교체·점검이 필요할 때 참고할 수 있는 간단한 기준 안내</li>
+            <li>전문 용어 없이도 읽히는 요약</li>
         </ul>
 
         <div class="note">
             이 글의 지표 설명은 일반 안내이며, 기기·OS·배터리 상태에 대한 공식 진단이 아닙니다.
             교체·수리는 제조사·공인 서비스 안내를 우선하세요.
-            .dmg가 준비되면 위 다운로드 영역을 활성 링크로 바꿉니다.
+            처음 실행 시 macOS 보안 설정에서 확인이 필요할 수 있습니다.
         </div>
 
         <h2>관련 링크</h2>
         <ul>
             <li><a href="/about.html">1125 Labs 소개</a></li>
+            <li><a href="/guides/mac-battery-basics.html">배터리 지표 읽는 법</a></li>
             <li><a href="/projects/jarvis.html">자비스 (Personal Behavioral AI)</a></li>
             <li><a href="/projects/morning-factor.html">모닝 팩터 소개</a></li>
-            <li><a href="/notes/personal-tools.html">개인 도구를 공개하는 이유</a></li>
         </ul>
 
         <footer>
