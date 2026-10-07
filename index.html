@@ -537,6 +537,16 @@
                     <a class="service-link" href="https://briefings.1125labs.com/" target="_blank" rel="noopener noreferrer">briefings.1125labs.com 방문 →</a>
                     <div style="margin-top:10px;"><a href="/projects/market-factor.html" style="color:#94a3b8;font-size:0.88rem;">허브에서 소개 글 읽기 →</a></div>
                 </article>
+                <article class="featured-card">
+                    <span class="tag">운영 중</span>
+                    <h3>배터리 상태 체크</h3>
+                    <p>
+                        macOS에서 iPad 배터리 용량·사이클·상태를 한눈에 확인하는 도구입니다.
+                        설치용 .dmg를 받을 수 있습니다.
+                    </p>
+                    <a class="service-link" href="https://github.com/levi-shin/1125labs-main/releases/download/battery-v1.0/iPadBatteryInspector.dmg">iPadBatteryInspector.dmg 다운로드 →</a>
+                    <div style="margin-top:10px;"><a href="/projects/battery-check.html" style="color:#94a3b8;font-size:0.88rem;">허브에서 소개 글 읽기 →</a></div>
+                </article>
             </div>
         </section>
 
@@ -548,7 +558,6 @@
             <div class="tab-group" id="tabGroup">
                 <button class="tab-btn active" onclick="filterProjects('all', this)">전체</button>
                 <button class="tab-btn" onclick="filterProjects('live', this)">운영 중</button>
-                <button class="tab-btn" onclick="filterProjects('ready', this)">개발 완료</button>
                 <button class="tab-btn" onclick="filterProjects('dev', this)">개발 중</button>
                 <button class="tab-btn" onclick="filterProjects('dead', this)">중단됨</button>
             </div>
@@ -678,18 +687,6 @@
     <script>
         const PROJECTS = [
             {
-                id: 'market-factor',
-                status: 'live',
-                badgeText: '운영 중',
-                title: '마켓 팩터 (Market Factor)',
-                subtitle: 'Collection & Big Tech Insights',
-                preview: '글로벌 거시경제(환율/유가/금/지수) 및 빅테크 시세 수집 & AI 등락 원인 심층 분석',
-                desc: `매일 아침 글로벌 거시경제(환율/유가/금/지수) 및 주요 빅테크 종목들의 시세 변동을 자동 수집하고, AI를 통해 항목별 구체적인 등락 원인을 심층 분석하여 기록하는 자동화 대시보드입니다.<br><br>
-                • <strong>핵심 기능</strong>: 매일 아침 Slack 모닝 브리핑 발송, 180일 히스토리 데이터 누적, 자산군별 인터랙티브 차트 및 AI 인과관계 리포트 뷰어 제공.`,
-                url: 'https://briefings.1125labs.com',
-                linkText: '대시보드 바로가기'
-            },
-            {
                 id: 'diablo',
                 status: 'live',
                 badgeText: '운영 중',
@@ -701,9 +698,48 @@
                 • <strong>아이템 DB</strong>: 룬어 족보, 유니크 요약, 신 파괴참·우버 관련 정리<br>
                 • <strong>시즌 초반</strong>: 육성 가이드, 버스, TC85 사냥터<br>
                 • <strong>도구</strong>: 매찬 대비 드랍 확률 계산기, 한국어/English<br><br>
-                광고는 콘텐츠가 있는 이 서비스(<code>diablo.1125labs.com</code>)에만 게재합니다.`,
+                광고는 콘텐츠가 있는 이 서비스(<code>diablo.1125labs.com</code>)에만 게재합니다.<br>
+                <a href="/projects/diablo.html" style="color:#38bdf8;">소개 글 읽기 →</a>`,
                 url: 'https://diablo.1125labs.com',
                 linkText: '디아블로 백서 방문'
+            },
+            {
+                id: 'market-factor',
+                status: 'live',
+                badgeText: '운영 중',
+                title: '마켓 팩터 (Market Factor)',
+                subtitle: 'Collection & Big Tech Insights',
+                preview: '글로벌 거시경제(환율/유가/금/지수) 및 빅테크 시세 수집 & AI 등락 원인 심층 분석',
+                desc: `매일 아침 글로벌 거시경제(환율/유가/금/지수) 및 주요 빅테크 종목들의 시세 변동을 자동 수집하고, AI를 통해 항목별 구체적인 등락 원인을 심층 분석하여 기록하는 자동화 대시보드입니다.<br><br>
+                • <strong>핵심 기능</strong>: 매일 아침 Slack 모닝 브리핑 발송, 180일 히스토리 데이터 누적, 자산군별 인터랙티브 차트 및 AI 인과관계 리포트 뷰어 제공.<br>
+                <a href="/projects/market-factor.html" style="color:#38bdf8;">소개 글 읽기 →</a>`,
+                url: 'https://briefings.1125labs.com',
+                linkText: '대시보드 바로가기'
+            },
+            {
+                id: 'battery-check',
+                status: 'live',
+                badgeText: '운영 중',
+                title: '배터리 상태 체크',
+                subtitle: 'iPadBatteryInspector · macOS',
+                preview: 'iPad 배터리 상태 확인 — .dmg 다운로드 가능',
+                desc: `macOS에서 iPad 배터리 용량·사이클·상태 요약을 한눈에 보는 도구입니다.<br><br>
+                <a href="/projects/battery-check.html" style="color:#38bdf8;">소개 글 읽기 →</a>`,
+                url: 'https://github.com/levi-shin/1125labs-main/releases/download/battery-v1.0/iPadBatteryInspector.dmg',
+                linkText: 'dmg 다운로드'
+            },
+            {
+                id: 'jarvis',
+                status: 'dev',
+                badgeText: '개발 중',
+                title: '자비스 (Jarvis)',
+                subtitle: 'Personal Behavioral AI',
+                preview: '개인 행동·습관 맥락을 이해하는 Personal Behavioral AI',
+                desc: `자비스는 Personal Behavioral AI로, 일상에서 반복되는 확인·정리·알림을 한곳에서 맡기기 위한 개인용 어시스턴트입니다.<br><br>
+                일정·할 일·메모뿐 아니라 행동 패턴·맥락을 짧게 묻고, 운영 중인 1125 Labs 서비스와 연결되는 빠른 조회·알림을 목표로 합니다.<br><br>
+                🚧 <strong>현재 개발 진행 중입니다.</strong> 공개 URL은 아직 없습니다.<br>
+                <a href="/projects/jarvis.html" style="color:#38bdf8;">소개 글 읽기 →</a>`,
+                url: null
             },
             {
                 id: 'booki',
@@ -730,33 +766,6 @@
                 아직 이름과 형태를 계속 구체화하며 만들어가는 중입니다.<br><br>
                 🚧 <strong>현재 개발 진행 중입니다.</strong>`,
                 url: null
-            },
-
-            {
-                id: 'jarvis',
-                status: 'dev',
-                badgeText: '개발 중',
-                title: '자비스 (Jarvis)',
-                subtitle: 'Personal Behavioral AI',
-                preview: '개인 행동·습관 맥락을 이해하는 Personal Behavioral AI',
-                desc: `자비스는 Personal Behavioral AI로, 일상에서 반복되는 확인·정리·알림을 한곳에서 맡기기 위한 개인용 어시스턴트입니다.<br><br>
-                일정·할 일·메모뿐 아니라 행동 패턴·맥락을 짧게 묻고, 운영 중인 1125 Labs 서비스와 연결되는 빠른 조회·알림을 목표로 합니다.<br><br>
-                🚧 <strong>현재 개발 진행 중입니다.</strong> 공개 URL은 아직 없습니다.<br>
-                <a href="/projects/jarvis.html" style="color:#38bdf8;">소개 글 읽기 →</a>`,
-                url: null
-            },
-            {
-                id: 'battery-check',
-                status: 'ready',
-                badgeText: '개발 완료',
-                title: '배터리 상태 체크',
-                subtitle: 'iPadBatteryInspector · macOS',
-                preview: 'iPad 배터리 상태 확인 — .dmg 다운로드 가능',
-                desc: `macOS에서 iPad 배터리 용량·사이클·상태 요약을 한눈에 보는 도구입니다.<br><br>
-                ✅ <strong>개발 완료</strong> · <a href="https://github.com/levi-shin/1125labs-main/releases/download/battery-v1.0/iPadBatteryInspector.dmg" download style="color:#38bdf8;">iPadBatteryInspector.dmg 다운로드</a><br>
-                <a href="/projects/battery-check.html" style="color:#38bdf8;">소개 글 읽기 →</a>`,
-                url: 'https://github.com/levi-shin/1125labs-main/releases/download/battery-v1.0/iPadBatteryInspector.dmg',
-                linkText: 'dmg 다운로드'
             },
             {
                 id: 'fintrack',
